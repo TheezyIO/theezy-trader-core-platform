@@ -13,12 +13,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: refs/heads/main
-          path: app/packages/theezy/theezy-trader-core
+          path: app/packages/theezy/theezy-trader-core-platform
         name: Checkout repository
       - name: Move Project configuration to Application
-        run: mv app/packages/theezy/theezy-trader-core/project.yml app
+        run: mv app/packages/theezy/theezy-trader-core-platform/project.yml app
       - name: Remove git and github related folders
-        run: rm -rf app/packages/theezy/theezy-trader-core/.git app/packages/theezy/theezy-trader-core/.github
+        run: rm -rf app/packages/theezy/theezy-trader-core-platform/.git app/packages/theezy/theezy-trader-core-platform/.github
       - name: Create configuration directory
         run: mkdir -p ${{ github.workspace }}/config/doctl
       - name: Install doctl cli
