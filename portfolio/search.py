@@ -1,4 +1,5 @@
-from common import constants
+from lib.common import constants
+
 
 def main(args):
     print(args)
