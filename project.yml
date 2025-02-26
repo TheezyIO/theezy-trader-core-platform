@@ -1,12 +1,12 @@
 packages:
-  - name: '${APP_PACKAGE_NAME}'
+  - name: portfolio
     shared: false
     functions:
-      - name: theezy-trader
+      - name: search
         limits:
           timeout: 150000
           memory: 1024
         binary: false
         runtime: 'python:default'
         web: true
-        main: ''
+        main: 'portfolio.search'
