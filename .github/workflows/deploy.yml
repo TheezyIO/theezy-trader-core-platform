@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          path: app/packages/theezy/theezy-trader-core-platformr
+          path: app/packages/theezy/theezy-trader-core-platform
           ref: ${{ github.event.ref }}
         name: Checkout repository
       - name: List files in checkout directory
