@@ -17,8 +17,12 @@ jobs:
         name: Checkout repository
       - name: List files in checkout directory
         run: ls -al app/packages
-      - name: Move Project configuration to Application
+      - name: Move Project configuration to Application root
         run: mv app/packages/project.yml app
+      - name: Move Lib folder to Application root
+        run: mv app/packages/lib app/lib
+      - name: Move Ignore file to Application root
+        run: mv app/packages/.ignore app
       - name: Remove git and github related folders
         run: rm -rf app/packages/.git app/packages/.github
       - name: Create configuration directory
@@ -33,5 +37,3 @@ jobs:
         run: doctl serverless connect ${{ vars.DIGITALOCEAN_FUNCTIONS_NAMESPACE }}
       - name: Deploy to DigitalOcean
         run: doctl serverless deploy app --remote-build
-        env:
-          APP_PACKAGE_NAME: ${{ github.ref_name }}
