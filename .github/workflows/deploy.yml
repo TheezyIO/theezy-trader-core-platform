@@ -7,12 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.ref }}
+    environment: ${{ github.ref_name }}
     name: Deploy to DigitalOcean
     steps:
       - uses: actions/checkout@v4
         with:
-          path: app/packages/theezy/theezy-trader-core-platform
+          path: app/packages/theezy/theezy-trader-core-platformr
+          ref: ${{ github.event.ref }}
         name: Checkout repository
       - name: List files in checkout directory
         run: ls -al app/packages/theezy/theezy-trader-core-platform
