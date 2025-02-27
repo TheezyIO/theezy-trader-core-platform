@@ -9,4 +9,4 @@ packages:
         binary: false
         runtime: 'python:default'
         web: true
-        main: 'search'
+        main: ''
