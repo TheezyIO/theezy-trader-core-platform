@@ -4,8 +4,16 @@ packages:
     functions:
       - name: search
         limits:
-          timeout: 150000
+          timeout: 180
           memory: 1024
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: view
+        limits:
+          timeout: 180
+          memory: 256
         binary: false
         runtime: 'python:default'
         web: true
