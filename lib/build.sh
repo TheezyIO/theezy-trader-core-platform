@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if [ -f ../portfolio/search/__main__.py ]; then
-  echo Test file content >> ../portfolio/search/test.txt
+if [ -f ../packages/portfolio/search/__main__.py ]; then
+  echo Test file content >> ../packages/portfolio/search/test.txt
 fi
