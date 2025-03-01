@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pip install -r requirements.txt
+
 function copy_lib {
   cp -R ../lib "../packages/$1/lib"
 }
