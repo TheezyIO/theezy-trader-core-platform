@@ -37,3 +37,5 @@ jobs:
         run: doctl serverless connect ${{ vars.DIGITALOCEAN_FUNCTIONS_NAMESPACE }}
       - name: Deploy to DigitalOcean
         run: doctl serverless deploy app --remote-build
+        env:
+          AUTH0_JWKS_URI: ${{ vars.AUTH0_JWKS_URI }}
