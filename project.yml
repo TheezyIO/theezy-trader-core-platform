@@ -1,0 +1,22 @@
+packages:
+  - name: portfolio
+    shared: false
+    environment:
+      AUTH0_JWKS_URI: '${AUTH0_JWKS_URI}'
+    functions:
+      - name: search
+        limits:
+          timeout: 3000
+          memory: 256
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: view
+        limits:
+          timeout: 3000
+          memory: 256
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
