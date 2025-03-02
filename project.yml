@@ -2,6 +2,7 @@ packages:
   - name: portfolio
     shared: false
     environment:
+      AUTH0_AUDIENCE: '${AUTH0_AUDIENCE}'
       AUTH0_JWKS_URI: '${AUTH0_JWKS_URI}'
       LOG_DESTINATIONS: '[{"logtail":{"token":"${LOG_TAIL_SOURCE_TOKEN}"}}]'
     functions:
