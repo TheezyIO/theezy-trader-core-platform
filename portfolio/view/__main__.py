@@ -6,8 +6,7 @@ from lib.services import portfolio
 logger = Logger('portfolio.view')
 
 def main(args):
-    http_request = args.get('http')
-    logger.info(f'Function invoked with the following request {http_request}')
+    logger.info(f'Function invoked with the following request {args}')
 
     authorized_user = authorization.verify_header(args)
     if not authorized_user:
