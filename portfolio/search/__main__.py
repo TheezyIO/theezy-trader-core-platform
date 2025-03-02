@@ -1,18 +1,20 @@
-from lib.auth0 import jwt
 from lib.common import constants
 from lib.common.logger import Logger
-
+from lib.security import authorization
+from lib.services import portfolio
 
 logger = Logger(f'{constants.portfolio_label}.search')
 
 def main(args):
-    if jwt.verify_token('Token'):
-        logger.info(args)
-        response = {'body': { 'message': f'Called the {constants.portfolio_label} search function'}, 'status': 200 }
-    else:
-        response = {'body': { 'message': 'Unauthorized'}, 'status': 401}
+    authorized_user = authorization.verify_header(args)
 
-    return response
+    if not authorized_user:
+        return {'body': {'message': 'Unauthorized'}, 'status': 401}
+
+    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
+    response = portfolio_service.get_portfolios()
+    return {'body': response, 'status': 200 }
+
 
 if __name__ == '__main__':
     print(main({}))
