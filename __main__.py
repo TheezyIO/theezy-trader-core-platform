@@ -1,5 +1,8 @@
 from portfolio.search import __main__ as portfolio_search
 from portfolio.view import __main__ as portfolio_view
+from lib.common.logger import Logger
+
+logger = Logger('Application.main')
 
 def main(args):
     print(portfolio_search.main(args))
@@ -8,4 +11,6 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main({})
+    logger.info('Starting application...')
+    main({'message': 'Testing newrelic logging'})
+
