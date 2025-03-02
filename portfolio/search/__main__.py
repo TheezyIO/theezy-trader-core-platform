@@ -1,13 +1,14 @@
-from lib.common import constants
 from lib.common.logger import Logger
 from lib.security import authorization
 from lib.services import portfolio
 
-import json
 
-logger = Logger(f'{constants.portfolio_label}.search')
+logger = Logger(f'portfolio.search')
 
 def main(args):
+    http_request = args.get('http')
+    logger.info(f'Function invoked with the following request {http_request}')
+
     authorized_user = authorization.verify_header(args)
 
     if not authorized_user:
@@ -15,7 +16,7 @@ def main(args):
 
     portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
     response = portfolio_service.get_portfolios()
-    return {'body': json.dumps(response), 'statusCode': 200 }
+    return {'body': response, 'statusCode': 200 }
 
 
 if __name__ == '__main__':
