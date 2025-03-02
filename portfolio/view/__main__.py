@@ -6,14 +6,17 @@ from lib.services import portfolio
 logger = Logger('portfolio.view')
 
 def main(args):
-    logger.info(f'Function invoked with the following request {args}')
+    logger.info(f'Function invocation started...')
 
     authorized_user = authorization.verify_header(args)
     if not authorized_user:
         return {'statusCode': 401, 'body': { 'message': 'Unauthorized'}}
 
+    if 'id' not in args:
+        return {'statusCode': 400, 'body': { 'message': 'Missing portfolio id'}}
+
     portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    response = portfolio_service.get_portfolio('')
+    response = portfolio_service.get_portfolio(args['id'])
     return {'statusCode': 200, 'body': response }
 
 
