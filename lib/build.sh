@@ -13,3 +13,7 @@ fi
 if [ -f ../packages/portfolio/view/__main__.py ]; then
   copy_lib portfolio/view
 fi
+
+if [ -f ../packages/portfolio/create/__main__.py ]; then
+  copy_lib portfolio/create
+fi
