@@ -20,3 +20,7 @@ class Service:
     @abstractmethod
     def get(self, url, params):
         return self.send_request('GET', url, params=params)
+
+    @abstractmethod
+    def post(self, url, body, params=None):
+        return self.send_request('POST', url, body=body, params=params)

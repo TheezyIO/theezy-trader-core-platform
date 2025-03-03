@@ -5,7 +5,7 @@ class Logger:
 
     def __init__(self, name):
         self.handler = logging.StreamHandler()
-        self.handler.setFormatter(logging.Formatter('[%(levelname)s]%(name)s - %(message)s'))
+        self.handler.setFormatter(logging.Formatter('[%(levelname)s] %(name)s - %(message)s'))
         self.logger = logging.getLogger(name)
         self.logger.addHandler(self.handler)
         self.logger.propagate = False

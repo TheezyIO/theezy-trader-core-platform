@@ -10,9 +10,14 @@ class PortfolioService(service.Service):
     def get(self, url, params=None):
         return super().get(url, params)
 
+    def post(self, url, body, params=None):
+        return super().post(url, body, params)
+
     def get_portfolios(self):
         return self.get(constants.urls.portfolio)
 
     def get_portfolio(self, portfolio_id):
         return self.get(f'{constants.urls.portfolio}', {'id': portfolio_id})
 
+    def create_portfolio(self, portfolio_request):
+        return self.post(constants.urls.portfolio, portfolio_request)

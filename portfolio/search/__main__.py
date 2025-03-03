@@ -6,12 +6,15 @@ from lib.services import portfolio
 logger = Logger(f'portfolio.search')
 
 def main(args):
-    logger.info(f'Function invoked with the following request {args}')
+    logger.info(f'Function invocation started...')
 
     authorized_user = authorization.verify_header(args)
 
     if not authorized_user:
         return {'body': {'message': 'Unauthorized'}, 'statusCode': 401}
+
+    if args['http']['method'] != 'GET':
+        return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
     portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
     response = portfolio_service.get_portfolios()
