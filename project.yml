@@ -9,7 +9,7 @@ packages:
       - name: search
         limits:
           timeout: 3000
-          memory: 64
+          memory: 128
         binary: false
         runtime: 'python:default'
         web: true
@@ -17,7 +17,7 @@ packages:
       - name: view
         limits:
           timeout: 3000
-          memory: 64
+          memory: 128
         binary: false
         runtime: 'python:default'
         web: true
@@ -25,7 +25,7 @@ packages:
       - name: create
         limits:
           timeout: 5000
-          memory: 64
+          memory: 128
         binary: false
         runtime: 'python:default'
         web: true
