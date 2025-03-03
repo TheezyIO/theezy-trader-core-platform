@@ -31,7 +31,8 @@ def main(args):
         'maxMembers': args['maxMembers']
     }
     logger.info(f'Creating portfolio... {request_body}')
-    # portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    # response = portfolio_service.create_portfolio(request_body)
 
-    return {'statusCode': 200, 'body': {'message': 'Portfolio created successfully'}}
+    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
+    response = portfolio_service.create_portfolio(request_body)
+
+    return {'statusCode': 200, 'body': {'message': response}}
