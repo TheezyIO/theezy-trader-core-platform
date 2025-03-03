@@ -14,5 +14,5 @@ def main(args):
     if args['http']['method'] != 'POST':
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
-    logger.info(f'Creating portfolio... {args.get("http")}')
+    logger.info(f'Creating portfolio... {args.keys()}')
     return {'statusCode': 200, 'body': { 'message': 'Portfolio created successfully'}}
