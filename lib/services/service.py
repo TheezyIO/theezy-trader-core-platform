@@ -28,3 +28,7 @@ class Service:
     @abstractmethod
     def put(self, url, body, params=None):
         return self.send_request('PUT', url, body=body, params=params)
+
+    @abstractmethod
+    def delete(self, url, params=None):
+        return self.send_request('DELETE', url, params=params)

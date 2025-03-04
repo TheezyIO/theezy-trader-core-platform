@@ -16,6 +16,9 @@ class PortfolioService(service.Service):
     def put(self, url, body, params=None):
         return super().put(url, body, params)
 
+    def delete(self, url, params=None):
+        return super().delete(url, params)
+
     def get_portfolios(self):
         return self.get(constants.urls.portfolio)
 
@@ -30,3 +33,12 @@ class PortfolioService(service.Service):
 
     def contribute_portfolio(self, contribution_request):
         return self.post(constants.urls.contribute, contribution_request)
+
+    def follow_portfolio(self, portfolio_id):
+        return self.put(f'{constants.urls.follow}', None,{'id': portfolio_id})
+
+    def unfollow_portfolio(self, portfolio_id):
+        return self.delete(f'{constants.urls.unfollow}', params={'id': portfolio_id})
+
+    def get_portfolio_members(self, portfolio_id):
+        return self.get(f'{constants.urls.members}', params={'id': portfolio_id})

@@ -4,7 +4,7 @@ from lib.services import portfolio
 
 logger = Logger('portfolio.create')
 
-typ_validation_list = [
+field_validation_list = [
     ('name', str),
     ('description', str),
     ('minimumDeposit', int),
@@ -21,7 +21,7 @@ def main(args):
     if args['http']['method'] != 'POST':
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
-    if not all([v[0] in args and type(args[v[0]]) == v[1] for v in typ_validation_list]):
+    if not all([v[0] in args and type(args[v[0]]) == v[1] for v in field_validation_list]):
         return {'statusCode': 400, 'body': { 'message': 'Missing or invalid parameters'}}
 
     request_body = {
