@@ -13,6 +13,9 @@ class PortfolioService(service.Service):
     def post(self, url, body, params=None):
         return super().post(url, body, params)
 
+    def put(self, url, body, params=None):
+        return super().put(url, body, params)
+
     def get_portfolios(self):
         return self.get(constants.urls.portfolio)
 
@@ -21,3 +24,9 @@ class PortfolioService(service.Service):
 
     def create_portfolio(self, portfolio_request):
         return self.post(constants.urls.portfolio, portfolio_request)
+
+    def update_portfolio(self, portfolio_request):
+        return self.put(constants.urls.portfolio, portfolio_request)
+
+    def contribute_portfolio(self, contribution_request):
+        return self.post(constants.urls.contribute, contribution_request)

@@ -30,3 +30,19 @@ packages:
         runtime: 'python:default'
         web: true
         main: ''
+      - name: update
+        limits:
+          timeout: 5000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: contribute
+        limits:
+          timeout: 5000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
