@@ -62,7 +62,7 @@ packages:
         runtime: 'python:default'
         web: true
         main: ''
-  - name: account
+  - name: accountbalance
     shared: false
     functions:
       - name: deposit

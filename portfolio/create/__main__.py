@@ -1,6 +1,7 @@
 from lib.common.logger import Logger
 from lib.security import authorization
 from lib.services import portfolio
+from lib.common.utils import validate_fields
 
 logger = Logger('portfolio.create')
 
@@ -21,7 +22,7 @@ def main(args):
     if args['http']['method'] != 'POST':
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
-    if not all([v[0] in args and type(args[v[0]]) == v[1] for v in field_validation_list]):
+    if not validate_fields(field_validation_list, args):
         return {'statusCode': 400, 'body': { 'message': 'Missing or invalid parameters'}}
 
     request_body = {
