@@ -9,5 +9,9 @@ class Url:
     unfollow = '/portfolio/unfollow'
     members = '/portfolio/members'
 
+    account_deposit = '/account/deposit-funds'
+    account_balance = '/account/balance'
+
+    stock_details = '/stock/details'
 
 urls = Url()

@@ -17,18 +17,14 @@ class Service:
         }
         return requests.request(method, request_url, headers=headers, json=body, params=params).json()
 
-    @abstractmethod
     def get(self, url, params):
         return self.send_request('GET', url, params=params)
 
-    @abstractmethod
     def post(self, url, body, params=None):
         return self.send_request('POST', url, body=body, params=params)
 
-    @abstractmethod
     def put(self, url, body, params=None):
         return self.send_request('PUT', url, body=body, params=params)
 
-    @abstractmethod
     def delete(self, url, params=None):
         return self.send_request('DELETE', url, params=params)

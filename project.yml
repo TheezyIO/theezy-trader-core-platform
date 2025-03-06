@@ -1,10 +1,10 @@
+environment:
+  AUTH0_AUDIENCE: '${AUTH0_AUDIENCE}'
+  AUTH0_JWKS_URI: '${AUTH0_JWKS_URI}'
+  LOG_DESTINATIONS: '[{"logtail":{"token":"${LOG_TAIL_SOURCE_TOKEN}"}}]'
 packages:
   - name: portfolio
     shared: false
-    environment:
-      AUTH0_AUDIENCE: '${AUTH0_AUDIENCE}'
-      AUTH0_JWKS_URI: '${AUTH0_JWKS_URI}'
-      LOG_DESTINATIONS: '[{"logtail":{"token":"${LOG_TAIL_SOURCE_TOKEN}"}}]'
     functions:
       - name: search
         limits:
@@ -55,6 +55,35 @@ packages:
         web: true
         main: ''
       - name: member
+        limits:
+          timeout: 5000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+  - name: account
+    shared: false
+    functions:
+      - name: deposit
+        limits:
+          timeout: 5000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: view
+        limits:
+          timeout: 5000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+  - name: stock
+    functions:
+      - name: details
         limits:
           timeout: 5000
           memory: 128
