@@ -22,4 +22,4 @@ def main(args):
     account_service = account.AccountService(args['http']['headers']['authorization'])
     response = account_service.deposit_funds(args['amount'])
 
-    return {'statusCode': 200, 'body': response}
+    return account_service.send_response(response)

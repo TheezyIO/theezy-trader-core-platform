@@ -23,4 +23,4 @@ def main(args):
     portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
     response = portfolio_service.get_portfolio_members(args['portfolioId'])
 
-    return {'statusCode': 200, 'body': response}
+    return portfolio_service.send_response(response)

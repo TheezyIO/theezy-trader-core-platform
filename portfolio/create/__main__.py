@@ -35,4 +35,4 @@ def main(args):
     portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
     response = portfolio_service.create_portfolio(request_body)
 
-    return {'statusCode': 200, 'body': response}
+    return portfolio_service.send_response(response)

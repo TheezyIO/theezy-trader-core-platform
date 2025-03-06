@@ -28,3 +28,11 @@ class Service:
 
     def delete(self, url, params=None):
         return self.send_request('DELETE', url, params=params)
+
+    @staticmethod
+    def send_response(body, status=200):
+        return {
+            'headers': {'Access-Control-Allow-Origin':'localhost'},
+            'statusCode': status,
+            'body': body
+        }

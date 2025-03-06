@@ -22,4 +22,4 @@ def main(args):
     stock_service = stock.StockService(args['http']['headers']['authorization'])
     response = stock_service.get_details(args['id'])
 
-    return {'statusCode': 200, 'body': response}
+    return stock_service.send_response(response)

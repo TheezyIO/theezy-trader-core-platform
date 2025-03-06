@@ -25,4 +25,4 @@ def main(args):
     else:
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
-    return {'statusCode': 200, 'body': response}
+    return portfolio_service.send_response(response)
