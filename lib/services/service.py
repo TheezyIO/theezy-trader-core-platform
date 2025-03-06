@@ -19,7 +19,7 @@ class Service:
         self.status_code = response.status_code
         return response.json()
 
-    def get(self, url, params):
+    def get(self, url, params=None):
         return self.send_request('GET', url, params=params)
 
     def post(self, url, body, params=None):
