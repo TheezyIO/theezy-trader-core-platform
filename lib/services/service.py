@@ -34,7 +34,8 @@ class Service:
         return {
             'headers': {
                 # This Access Control Allow Origin will need to be set by an environment variable
-                'Access-Control-Allow-Origin':'http://localhost:8888,http://127.0.0.1:8888'
+                # 'Access-Control-Allow-Origin':'http://localhost:8888,http://127.0.0.1:8888'
+                'Access-Control-Allow-Origin': '*'
             },
             'statusCode': status,
             'body': body
