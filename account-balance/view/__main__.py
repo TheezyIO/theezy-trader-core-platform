@@ -3,7 +3,7 @@ from lib.security import authorization
 from lib.services import account
 
 
-logger = Logger('account.view')
+logger = Logger('account-balance.view')
 
 def main(args):
     logger.info(f'Function invocation started...')

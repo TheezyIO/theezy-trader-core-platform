@@ -6,6 +6,14 @@ function copy_lib {
   cp -R ../lib "../packages/$1/lib"
 }
 
+if [ -f ../packages/account-balance/deposit/__main__.py ]; then
+  copy_lib account-balance/deposit
+fi
+
+if [ -f ../packages/account-balance/view/__main__.py ]; then
+  copy_lib account-balance/view
+fi
+
 if [ -f ../packages/portfolio/search/__main__.py ]; then
   copy_lib portfolio/search
 fi
@@ -16,4 +24,20 @@ fi
 
 if [ -f ../packages/portfolio/create/__main__.py ]; then
   copy_lib portfolio/create
+fi
+
+if [ -f ../packages/portfolio/update/__main__.py ]; then
+  copy_lib portfolio/update
+fi
+
+if [ -f ../packages/portfolio/follower/__main__.py ]; then
+  copy_lib portfolio/follower
+fi
+
+if [ -f ../packages/portfolio/member/__main__.py ]; then
+  copy_lib portfolio/member
+fi
+
+if [ -f ../packages/stock/details/__main__.py ]; then
+  copy_lib stock/details
 fi
