@@ -30,6 +30,10 @@ if [ -f ../packages/portfolio/update/__main__.py ]; then
   copy_lib portfolio/update
 fi
 
+if [ -f ../packages/portfolio/contribute/__main__.py ]; then
+  copy_lib portfolio/contribute
+fi
+
 if [ -f ../packages/portfolio/follower/__main__.py ]; then
   copy_lib portfolio/follower
 fi
