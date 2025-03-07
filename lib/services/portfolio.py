@@ -26,4 +26,4 @@ class PortfolioService(service.Service):
         return self.delete(f'{constants.urls.unfollow}', params={'id': portfolio_id})
 
     def get_portfolio_members(self, portfolio_id):
-        return self.get(f'{constants.urls.members}', params={'id': portfolio_id})
+        return self.get(f'{constants.urls.members}', params={'portfolioId': portfolio_id})

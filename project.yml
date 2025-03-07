@@ -8,7 +8,7 @@ packages:
     functions:
       - name: search
         limits:
-          timeout: 3000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -16,7 +16,7 @@ packages:
         main: ''
       - name: view
         limits:
-          timeout: 3000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -24,7 +24,7 @@ packages:
         main: ''
       - name: create
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -32,7 +32,7 @@ packages:
         main: ''
       - name: update
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -40,7 +40,7 @@ packages:
         main: ''
       - name: contribute
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -48,7 +48,7 @@ packages:
         main: ''
       - name: follower
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -56,7 +56,7 @@ packages:
         main: ''
       - name: member
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -67,7 +67,7 @@ packages:
     functions:
       - name: deposit
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -75,7 +75,7 @@ packages:
         main: ''
       - name: view
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
@@ -85,7 +85,7 @@ packages:
     functions:
       - name: details
         limits:
-          timeout: 5000
+          timeout: 10000
           memory: 128
         binary: false
         runtime: 'python:default'
