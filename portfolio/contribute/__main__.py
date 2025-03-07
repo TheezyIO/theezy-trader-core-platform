@@ -7,7 +7,7 @@ logger = Logger('portfolio.contribute')
 
 field_validation_list = [
     ('portfolioId', str),
-    ('amount', int)
+    ('deposit', int)
 ]
 
 def main(args):
@@ -25,7 +25,7 @@ def main(args):
 
     request_body = {
         'portfolioId': args['portfolioId'],
-        'amount': args['amount']
+        'deposit': args['deposit'],
     }
     logger.info(f'Contributing to portfolio... {request_body}')
 
