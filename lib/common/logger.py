@@ -1,4 +1,13 @@
 import logging
+import os
+
+logging_levels = {
+    'debug': logging.DEBUG,
+    'info': logging.INFO,
+    'warning': logging.WARNING,
+    'error': logging.ERROR,
+    'critical': logging.CRITICAL
+}
 
 
 class Logger:
@@ -10,8 +19,7 @@ class Logger:
         self.logger.addHandler(self.handler)
         self.logger.propagate = False
         self.name = name
-
-        self.set_level(logging.INFO)
+        self.set_level(logging_levels.get(os.getenv('LOG_LEVEL', 'INFO').lower(), logging.INFO))
 
     def set_level(self, level):
         self.handler.setLevel(level)

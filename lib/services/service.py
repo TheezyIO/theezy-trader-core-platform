@@ -1,6 +1,10 @@
 from lib.common import constants
+from lib.common.logger import Logger
 
 import requests
+
+
+logger = Logger('services.service')
 
 
 class Service:
@@ -15,6 +19,9 @@ class Service:
             'Authorization': self.authorization_token,
             'Content-Type': 'application/json'
         }
+        logger.debug(f'[{method}] {request_url}')
+        if body:
+            logger.debug(f'Request body: {body}')
         response = requests.request(method, request_url, headers=headers, json=body, params=params)
         self.status_code = response.status_code
         return response.json()
@@ -32,4 +39,5 @@ class Service:
         return self.send_request('DELETE', url, params=params)
 
     def send_response(self, body, status=None):
+        logger.debug(f'Response status={self.status_code} body={body}')
         return {'statusCode': status if status else self.status_code, 'body': body}

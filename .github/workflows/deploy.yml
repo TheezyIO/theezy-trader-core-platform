@@ -41,3 +41,4 @@ jobs:
           AUTH0_AUDIENCE: ${{ vars.AUTH0_AUDIENCE }}
           AUTH0_JWKS_URI: ${{ vars.AUTH0_JWKS_URI }}
           LOG_TAIL_SOURCE_TOKEN: ${{ secrets.LOG_TAIL_SOURCE_TOKEN }}
+          LOG_LEVEL: ${{ vars.LOG_LEVEL }}
