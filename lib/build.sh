@@ -49,3 +49,7 @@ fi
 if [ -f ../packages/stock/search/__main__.py ]; then
   copy_lib stock/search
 fi
+
+if [ -f ../packages/stock/transaction/__main__.py ]; then
+  copy_lib stock/transaction
+fi
