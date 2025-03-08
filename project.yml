@@ -91,3 +91,19 @@ packages:
         runtime: 'python:default'
         web: true
         main: ''
+      - name: search
+        limits:
+          timeout: 10000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: transaction
+        limits:
+          timeout: 10000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''

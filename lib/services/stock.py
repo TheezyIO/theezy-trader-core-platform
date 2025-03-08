@@ -9,3 +9,6 @@ class StockService(service.Service):
 
     def search(self, portfolio_id):
         return self.get(f'{constants.urls.stock_search}', {'portfolioId': portfolio_id})
+
+    def get_transactions(self, stock_id):
+        return self.get(f'{constants.urls.transactions}', {'id': stock_id, 'scope': 'PORTFOLIO_STOCK'})

@@ -15,4 +15,6 @@ class Url:
     stock_details = '/stocks/details'
     stock_search = '/stocks/portfolio'
 
+    transactions = '/transactions'
+
 urls = Url()
