@@ -15,5 +15,8 @@ class StockService(service.Service):
                 'cursor': kwargs.get('cursor')
             })
 
+    def get_portfolio_stocks(self, portfolio_id):
+        return self.get(f'{constants.urls.stock_by_portfolio}', {'portfolioId': portfolio_id})
+
     def get_transactions(self, stock_id):
         return self.get(f'{constants.urls.transactions}', {'id': stock_id, 'scope': 'PORTFOLIO_STOCK'})

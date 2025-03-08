@@ -13,7 +13,8 @@ class Url:
     account_balance = '/account/balance'
 
     stock_details = '/stocks/details'
-    stock_search = '/stocks/portfolio'
+    stock_by_portfolio = '/stocks/portfolio'
+    stock_search = '/stocks/search'
 
     transactions = '/transactions'
 

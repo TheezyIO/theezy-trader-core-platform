@@ -26,10 +26,12 @@ def main(args):
         return {'statusCode': 400, 'body': { 'message': 'Missing field parameters'}}
 
     stock_service = stock.StockService(args['http']['headers']['authorization'])
-    response = stock_service.search(
-        portfolioId=args.get('portfolioId'),
-        search=args.get('search'),
-        cursor=args.get('cursor')
-    )
+    if 'portfolioId' in args:
+        response = stock_service.get_portfolio_stocks(args['portfolioId'])
+    else:
+        response = stock_service.search(
+            search=args.get('search'),
+            cursor=args.get('cursor')
+        )
 
     return stock_service.send_response(response)
