@@ -16,10 +16,10 @@ def main(args):
     if args['http']['method'] != 'GET':
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
-    if 'id' not in args:
-        return {'statusCode': 400, 'body': { 'message': 'Missing stock id'}}
+    if 'ticker' not in args:
+        return {'statusCode': 400, 'body': { 'message': 'Missing stock ticker'}}
 
     stock_service = stock.StockService(args['http']['headers']['authorization'])
-    response = stock_service.get_details(args['id'])
+    response = stock_service.get_details(args['ticker'], args.get('portfolioId'))
 
     return stock_service.send_response(response)
