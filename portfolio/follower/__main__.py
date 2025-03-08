@@ -1,5 +1,5 @@
 from lib.common.logger import Logger
-from lib.common.utils import validate_fields
+from lib.common.utils import validate_all_fields
 from lib.security import authorization
 from lib.services import portfolio
 
@@ -14,7 +14,7 @@ def main(args):
     if not authorized_user:
         return {'statusCode': 401, 'body': { 'message': 'Unauthorized'}}
 
-    if not validate_fields(field_validation_list, args):
+    if not validate_all_fields(field_validation_list, args):
         return {'statusCode': 400, 'body': { 'message': 'Missing or invalid parameters'}}
 
     portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
