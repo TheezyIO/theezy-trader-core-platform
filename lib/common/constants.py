@@ -12,7 +12,7 @@ class Url:
     account_deposit = '/account/deposit-funds'
     account_balance = '/account/balance'
 
-    stock_details = '/stock/details'
+    stock_details = '/stocks/details'
     stock_search = '/stocks/portfolio'
 
 urls = Url()
