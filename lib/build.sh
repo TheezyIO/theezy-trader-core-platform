@@ -45,3 +45,7 @@ fi
 if [ -f ../packages/stock/details/__main__.py ]; then
   copy_lib stock/details
 fi
+
+if [ -f ../packages/stock/search/__main__.py ]; then
+  copy_lib stock/search
+fi
