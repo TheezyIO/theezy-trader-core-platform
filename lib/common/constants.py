@@ -16,6 +16,7 @@ class Url:
     stock_by_portfolio = '/stocks/portfolio'
     stock_search = '/stocks/search'
     stock_purchase = '/stocks/purchase'
+    stock_sell = '/stocks/sell'
 
     transactions = '/transactions'
 

@@ -22,4 +22,7 @@ class StockService(service.Service):
         return self.get(f'{constants.urls.transactions}', {'id': stock_id, 'scope': 'PORTFOLIO_STOCK'})
 
     def purchase(self, purchase_request):
-        return self.post(constants.urls.stcok_purchase, purchase_request)
+        return self.post(constants.urls.stock_purchase, purchase_request)
+
+    def sell(self, sell_request):
+        return self.post(constants.urls.stock_sell, sell_request)
