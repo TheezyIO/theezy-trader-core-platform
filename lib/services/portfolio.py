@@ -5,7 +5,7 @@ from lib.services import service
 class PortfolioService(service.Service):
 
     def get_portfolios(self):
-        return self.get(constants.urls.portfolio)
+        return self.get(constants.urls.portfolio_search)
 
     def get_portfolio(self, portfolio_id):
         return self.get(f'{constants.urls.portfolio}', {'id': portfolio_id})

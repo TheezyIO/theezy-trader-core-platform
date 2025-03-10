@@ -8,6 +8,7 @@ class Url:
     follow = '/portfolio/follow'
     unfollow = '/portfolio/unfollow'
     members = '/portfolio/members'
+    portfolio_search = '/portfolio/search'
 
     account_deposit = '/account/deposit-funds'
     account_balance = '/account/balance'
