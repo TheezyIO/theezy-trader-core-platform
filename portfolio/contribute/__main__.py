@@ -6,7 +6,7 @@ from lib.common.utils import validate_all_fields
 logger = Logger('portfolio.contribute')
 
 field_validation_list = [
-    ('portfolioId', str),
+    ('portfolioId', int),
     ('deposit', int)
 ]
 
