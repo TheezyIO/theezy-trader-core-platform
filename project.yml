@@ -108,3 +108,11 @@ packages:
         runtime: 'python:default'
         web: true
         main: ''
+      - name: purchase
+        limits:
+          timeout: 30000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
