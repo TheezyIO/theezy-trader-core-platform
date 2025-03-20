@@ -21,4 +21,8 @@ class Url:
 
     transactions = '/transactions'
 
+
+    polygon = 'https://api.polygon.io'
+    stock_quotes = '/v3/quotes/'
+
 urls = Url()

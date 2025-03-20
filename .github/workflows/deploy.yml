@@ -42,3 +42,8 @@ jobs:
           AUTH0_JWKS_URI: ${{ vars.AUTH0_JWKS_URI }}
           LOG_TAIL_SOURCE_TOKEN: ${{ secrets.LOG_TAIL_SOURCE_TOKEN }}
           LOG_LEVEL: ${{ vars.LOG_LEVEL }}
+          MYSQL_DATABASE: ${{ vars.MYSQL_DATABASE }}
+          MYSQL_HOST: ${{ vars.MYSQL_HOST }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}

@@ -9,12 +9,13 @@ logger = Logger('services.service')
 
 class Service:
 
-    def __init__(self, authorization_token):
+    def __init__(self, authorization_token, base_url=constants.urls.buildship):
+        self.base_url = base_url
         self.authorization_token = authorization_token
         self.status_code = 200
 
     def send_request(self, method, url, params=None, body=None):
-        request_url = f'{constants.urls.buildship}{url}'
+        request_url = f'{self.base_url}{url}'
         headers = {
             'Authorization': self.authorization_token,
             'Content-Type': 'application/json'
