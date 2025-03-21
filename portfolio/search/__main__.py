@@ -2,8 +2,6 @@ from lib.common.logger import Logger
 from lib.security import authorization
 from lib.services import portfolio
 
-import lib
-
 logger = Logger(f'portfolio.search')
 
 def main(args):
