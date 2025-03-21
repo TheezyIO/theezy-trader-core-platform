@@ -12,7 +12,7 @@ logger = Logger('stock.dailyprice')
 def main():
     logger.info(f'Function invocation started...')
     logger.info('Listing out package modules in lib')
-    for _, name in pkgutil.iter_modules(['lib']):
+    for _, name, _ in pkgutil.iter_modules(['lib']):
         logger.info(f'Module - {name}...')
     # stock_dao = stock.StockDao()
     # stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
