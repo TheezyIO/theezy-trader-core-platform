@@ -6,9 +6,8 @@ from datetime import datetime, timedelta
 
 logger = Logger('stock.dailyprice')
 
-def main(args):
+def main():
     logger.info(f'Function invocation started...')
-    logger.info(f'with args: {args}')
 
     stock_dao = StockDao()
     stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
