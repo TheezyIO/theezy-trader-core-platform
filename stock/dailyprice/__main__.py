@@ -1,6 +1,6 @@
 from lib.common.logger import Logger
 from lib.services import polygon
-from lib.model import stock
+from lib.database import mysqldb
 from datetime import datetime, timedelta
 
 
@@ -9,9 +9,9 @@ logger = Logger('stock.dailyprice')
 def main():
     logger.info(f'Function invocation started...')
 
-    stock_dao = stock.StockDao()
-    stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
-
+    # stock_dao = stock.StockDao()
+    # stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
+    stocks_by_earliest_date = []
     for stock_data in stocks_by_earliest_date:
         date_filter_set = set()
         target_date = datetime.date(datetime.now())
@@ -23,7 +23,8 @@ def main():
             current_date += timedelta(days=1)
 
         # Further optimize this by sending queries for multiple stock tickers for multiple date ranges at once
-        existing_price_dates = stock_dao.get_daily_prices_by_dates(stock_data['stock_ticker'], list(date_filter_set))
+        # existing_price_dates = stock_dao.get_daily_prices_by_dates(stock_data['stock_ticker'], list(date_filter_set))
+        existing_price_dates = []
 
         for existing_daily_date in existing_price_dates:
             iso_format = existing_daily_date['stock_price_event_date'].isoformat()

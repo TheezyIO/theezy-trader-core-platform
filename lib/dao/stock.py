@@ -1,7 +1,7 @@
 from lib.common.logger import Logger
 # from lib.database import mysqldb
 
-logger = Logger('stock.dao')
+logger = Logger('dao.stock')
 
 class StockDao:
 
