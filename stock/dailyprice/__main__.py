@@ -2,6 +2,7 @@ from lib.common.logger import Logger
 from lib.services import polygon
 # from lib.database import mysqldb
 from datetime import datetime, timedelta
+from mysql.connector import connect
 
 
 logger = Logger('stock.dailyprice')
