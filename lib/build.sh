@@ -2,7 +2,9 @@
 
 function copy_lib {
   cp -R ../lib "../packages/$1/lib"
-  mv "../packages/$1/lib/build.sh" "../packages/$1"
+  cp requirements.txt "../packages/$1"
+  echo pip install -r requirements.txt >> "../packages/$1/build.sh"
+  chmod +x "../packages/$1/build.sh"
 }
 
 if [ -f ../packages/account-balance/deposit/__main__.py ]; then
