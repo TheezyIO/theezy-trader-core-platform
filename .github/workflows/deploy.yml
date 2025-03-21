@@ -47,5 +47,3 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
-      - name: Show contents of deployed file
-        run: cat ${{ github.workspace }}/app/.deployed/versions.json
