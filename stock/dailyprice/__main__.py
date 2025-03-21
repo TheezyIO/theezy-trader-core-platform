@@ -1,6 +1,6 @@
 from lib.common.logger import Logger
-# from lib.services import polygon
-# from lib.dao.stock import StockDao
+from lib.services import polygon
+from lib.dao.stock import StockDao
 # from datetime import datetime, timedelta
 
 
@@ -9,8 +9,8 @@ logger = Logger('stock.dailyprice')
 def main():
     logger.info(f'Function invocation started...')
 
-    # stock_dao = StockDao()
-    # stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
+    stock_dao = StockDao()
+    stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
     #
     # for stock in stocks_by_earliest_date:
     #     date_filter_set = set()
