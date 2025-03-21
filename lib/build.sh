@@ -61,3 +61,7 @@ fi
 if [ -f ../packages/stock/sell/__main__.py ]; then
   copy_lib stock/sell
 fi
+
+if [ -f ../packages/stock/dailyprice/__main__.py ]; then
+  copy_lib stock/dailyprice
+fi
