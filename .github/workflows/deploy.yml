@@ -49,3 +49,8 @@ jobs:
           POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
       - name: List files in the current directory
         run: ls -al
+      - name: Publish .deployed file to S3
+        run: aws s3 cp app/.deployed s3://theezy-trader/.deployed
+        env:
+          AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
