@@ -1,6 +1,6 @@
 from lib.common.logger import Logger
 from lib.services import polygon
-from lib.dao import stock
+from lib.model import stock
 from datetime import datetime, timedelta
 
 
