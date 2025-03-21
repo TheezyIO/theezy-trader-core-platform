@@ -1,10 +1,14 @@
-from lib.database import mysqldb
+from lib.common.logger import Logger
+# from lib.database import mysqldb
+
+logger = Logger('stock.dao')
 
 class StockDao:
 
     def __init__(self):
-        self.mysql_client = mysqldb.MySQLClient()
-        self.mysql_client.connect()
+        # self.mysql_client = mysqldb.MySQLClient()
+        # self.mysql_client.connect()
+        pass
 
     def get_stocks_by_earliest_date(self):
         query = """
@@ -22,7 +26,9 @@ class StockDao:
                 stock_name, stock_ticker
         """
 
-        return self.mysql_client.query(query)
+        # return self.mysql_client.query(query)
+        logger.info(f'Query: {query}')
+        return []
 
     # Optimize this query to use BETWEEN instead of listing all dates
     def get_daily_prices_by_dates(self, stock_ticker, dates):
@@ -38,7 +44,11 @@ class StockDao:
                 stock.id = stock_daily_price.stock_id AND stock.ticker = '{}' AND stock_daily_price.event_date IN ({})
         """
 
-        return self.mysql_client.query(query.format(stock_ticker, ', '.join(map(lambda date: "'%s'" % date, dates))))
+        # return self.mysql_client.query(query.format(stock_ticker, ', '.join(map(lambda date: "'%s'" % date, dates))))
+        logger.info(f'Query: {query.format(stock_ticker, ', '.join(map(lambda date: "'%s'" % date, dates)))}')
+        return []
 
     def update_daily_prices_for_ticker(self, daily_prices):
-        self.mysql_client.insert('stock_daily_price', daily_prices)
+        # self.mysql_client.insert('stock_daily_price', daily_prices)
+        if daily_prices:
+            logger.info(f'Updated daily prices for stock ticker {daily_prices[0]["stock_ticker"]}')
