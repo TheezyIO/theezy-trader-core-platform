@@ -2,7 +2,7 @@ from lib.common.logger import Logger
 from lib.security import authorization
 from lib.services import portfolio
 
-logger = Logger(f'portfolio.search [Updated function]')
+logger = Logger(f'portfolio.search')
 
 def main(args):
     logger.info(f'Function invocation started...')

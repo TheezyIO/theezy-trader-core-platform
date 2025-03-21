@@ -1,33 +1,32 @@
 #!/bin/bash
 
-pip install -r requirements.txt
-
-function copy_lib {
+function install_function {
   cp -R ../lib "../packages/$1/lib"
+  pip install -r "../packages/$1/lib/requirements.txt"
 }
 
 if [ -f ../packages/account-balance/deposit/__main__.py ]; then
-  copy_lib account-balance/deposit
+  install_function account-balance/deposit
 fi
 
 if [ -f ../packages/account-balance/view/__main__.py ]; then
-  copy_lib account-balance/view
+  install_function account-balance/view
 fi
 
 if [ -f ../packages/portfolio/search/__main__.py ]; then
-  copy_lib portfolio/search
+  install_function portfolio/search
 fi
 
 if [ -f ../packages/portfolio/view/__main__.py ]; then
-  copy_lib portfolio/view
+  install_function portfolio/view
 fi
 
 if [ -f ../packages/portfolio/create/__main__.py ]; then
-  copy_lib portfolio/create
+  install_function portfolio/create
 fi
 
 if [ -f ../packages/portfolio/update/__main__.py ]; then
-  copy_lib portfolio/update
+  install_function portfolio/update
 fi
 
 if [ -f ../packages/portfolio/contribute/__main__.py ]; then
