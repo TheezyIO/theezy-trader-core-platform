@@ -47,8 +47,8 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
           MYSQL_USER: ${{ secrets.MYSQL_USER }}
           POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
-      - name: List files in the current directory
-        run: ls -al
+      - name: List files in the app directory
+        run: ls -al app
       - name: Publish .deployed file to S3
         run: aws s3 cp app/.deployed s3://theezy-app/.deployed
         env:
