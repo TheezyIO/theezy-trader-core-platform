@@ -1,7 +1,8 @@
 from lib.common.logger import Logger
 from lib.security import authorization
 from lib.services import portfolio
-from lib.database import mysqldb
+
+import lib.dao
 
 logger = Logger(f'portfolio.search')
 
