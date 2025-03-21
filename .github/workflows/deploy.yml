@@ -49,8 +49,5 @@ jobs:
           POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
       - name: List files in the app directory
         run: ls -al app
-      - name: Publish .deployed file to S3
-        run: aws s3 cp ${{ github.workspace }}/app/.deployed s3://theezy-app/.deployed
-        env:
-          AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      - name: Show contents of deployed file
+        run: cat ${{ github.workspace }}/app/.deployed
