@@ -2,18 +2,15 @@ from lib.common.logger import Logger
 from lib.services import polygon
 # from lib.database import mysqldb
 from datetime import datetime, timedelta
-# from mysql.connector import connect
 
-import pkgutil
-
+import mysql
 
 logger = Logger('stock.dailyprice')
 
 def main():
     logger.info(f'Function invocation started...')
-    logger.info('Listing out package modules in mysql')
-    for _, name, _ in pkgutil.iter_modules(['mysql']):
-        logger.info(f'Module - {name}...')
+    logger.info('Was able to successfully import mysql')
+
     # stock_dao = stock.StockDao()
     # stocks_by_earliest_date = stock_dao.get_stocks_by_earliest_date()
     stocks_by_earliest_date = []
