@@ -120,13 +120,21 @@ packages:
         runtime: 'python:default'
         web: true
         main: ''
+      - name: sell
+        limits:
+          timeout: 30000
+          memory: 128
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
       - name: dailyprice
         limits:
           timeout: 900000
           memory: 512
         binary: false
         runtime: 'python:default'
-        web: false
+        web: true
         triggers:
           - name: fetch-daily-prices
             sourceType: scheduler
