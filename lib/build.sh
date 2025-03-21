@@ -30,37 +30,37 @@ if [ -f ../packages/portfolio/update/__main__.py ]; then
 fi
 
 if [ -f ../packages/portfolio/contribute/__main__.py ]; then
-  copy_lib portfolio/contribute
+  install_function portfolio/contribute
 fi
 
 if [ -f ../packages/portfolio/follower/__main__.py ]; then
-  copy_lib portfolio/follower
+  install_function portfolio/follower
 fi
 
 if [ -f ../packages/portfolio/member/__main__.py ]; then
-  copy_lib portfolio/member
+  install_function portfolio/member
 fi
 
 if [ -f ../packages/stock/details/__main__.py ]; then
-  copy_lib stock/details
+  install_function stock/details
 fi
 
 if [ -f ../packages/stock/search/__main__.py ]; then
-  copy_lib stock/search
+  install_function stock/search
 fi
 
 if [ -f ../packages/stock/transaction/__main__.py ]; then
-  copy_lib stock/transaction
+  install_function stock/transaction
 fi
 
 if [ -f ../packages/stock/purchase/__main__.py ]; then
-  copy_lib stock/purchase
+  install_function stock/purchase
 fi
 
 if [ -f ../packages/stock/sell/__main__.py ]; then
-  copy_lib stock/sell
+  install_function stock/sell
 fi
 
 if [ -f ../packages/stock/dailyprice/__main__.py ]; then
-  copy_lib stock/dailyprice
+  install_function stock/dailyprice
 fi
