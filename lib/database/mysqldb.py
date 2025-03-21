@@ -66,6 +66,7 @@ class MySQLClient:
             self.connect()
 
         self.cursor = self.connection.cursor()
+        logger.debug(f'Executing query: {query}')
         self.cursor.execute(query)
 
         return self.get_results()
@@ -82,6 +83,7 @@ class MySQLClient:
             columns = row.keys()
             values = ', '.join(map(lambda c: quote(row[c]), columns))
             column_fields  = ', '.join(columns)
+            logger.debug(f'Executing INSERT INTO {table_name} ({column_fields}) VALUES ({values})')
             self.cursor.execute(f'INSERT INTO {table_name} ({column_fields}) VALUES ({values})')
 
         self.cursor.close()
