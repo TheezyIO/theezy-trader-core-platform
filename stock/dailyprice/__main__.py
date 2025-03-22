@@ -74,4 +74,4 @@ def main():
         stock_dao.update_daily_prices_for_ticker(daily_prices)
         logger.info(f'{len(daily_prices)} daily updates were added for {stock_data["stock_ticker"]}')
 
-    return 'Stock Daily Price update has completed successfully'
+    return {'body': 'Stock Daily Price update has completed successfully', 'statusCode': 200}
