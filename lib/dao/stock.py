@@ -45,5 +45,3 @@ class StockDao:
 
     def update_daily_prices_for_ticker(self, daily_prices):
         self.mysql_client.insert('stock_daily_price', daily_prices)
-        if daily_prices:
-            logger.info(f'Updated daily prices for stock ticker {daily_prices[0]["stock_ticker"]}')
