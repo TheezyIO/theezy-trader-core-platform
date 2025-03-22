@@ -27,7 +27,8 @@ def main():
 
         for existing_daily_date in existing_price_dates:
             iso_format = existing_daily_date['stock_price_event_date'].isoformat()
-            date_filter_set.remove(iso_format)
+            if iso_format in date_filter_set:
+                date_filter_set.remove(iso_format)
 
         missing_price_dates = sorted(list(date_filter_set))
         logger.info(f'Missing price dates for {stock_data["stock_ticker"]} {missing_price_dates}')
