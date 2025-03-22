@@ -86,6 +86,8 @@ class MySQLClient:
             logger.debug(f'Executing INSERT INTO {table_name} ({column_fields}) VALUES ({values})')
             self.cursor.execute(f'INSERT INTO {table_name} ({column_fields}) VALUES ({values})')
 
+        self.connection.commit()
+
         self.cursor.close()
         self.cursor = None
 

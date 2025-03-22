@@ -135,7 +135,7 @@ packages:
           memory: 512
         binary: false
         runtime: 'python:default'
-        web: true
+        web: false
         triggers:
           - name: fetch-daily-prices
             sourceType: scheduler

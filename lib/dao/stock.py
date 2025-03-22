@@ -28,8 +28,8 @@ class StockDao:
         return self.mysql_client.query(query)
 
     # Optimize this query to use BETWEEN instead of listing all dates
-    def get_daily_prices_by_dates(self, stock_ticker, dates):
-        query = """
+    def get_daily_prices_by_dates(self, stock_ticker, from_date, to_date):
+        query = f"""
             SELECT
                 stock.id stock_id, 
                 stock.ticker stock_ticker,
@@ -38,10 +38,11 @@ class StockDao:
             FROM
                 stock_daily_price, stock
             WHERE
-                stock.id = stock_daily_price.stock_id AND stock.ticker = '{}' AND stock_daily_price.event_date IN ({})
+                stock.id = stock_daily_price.stock_id AND stock.ticker = '{stock_ticker}'
+                AND stock_daily_price.event_date BETWEEN '{from_date}' AND '{to_date}'
         """
 
-        return self.mysql_client.query(query.format(stock_ticker, ', '.join(map(lambda date: "'%s'" % date, dates))))
+        return self.mysql_client.query(query)
 
     def update_daily_prices_for_ticker(self, daily_prices):
         self.mysql_client.insert('stock_daily_price', daily_prices)
