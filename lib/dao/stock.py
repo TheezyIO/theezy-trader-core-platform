@@ -34,6 +34,7 @@ class StockDao:
                 stock.id stock_id, 
                 stock.ticker stock_ticker,
                 stock.name stock_name,
+                stock_daily_price.price stock_daily_price,
                 stock_daily_price.event_date stock_price_event_date
             FROM
                 stock_daily_price, stock
