@@ -15,7 +15,7 @@ packages:
       - name: search
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -23,7 +23,7 @@ packages:
       - name: view
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -31,7 +31,7 @@ packages:
       - name: create
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -39,7 +39,7 @@ packages:
       - name: update
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -47,7 +47,7 @@ packages:
       - name: contribute
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -55,7 +55,7 @@ packages:
       - name: follower
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -63,7 +63,7 @@ packages:
       - name: member
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -74,7 +74,7 @@ packages:
       - name: deposit
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -82,7 +82,7 @@ packages:
       - name: view
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -92,7 +92,7 @@ packages:
       - name: details
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -100,7 +100,7 @@ packages:
       - name: search
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -108,7 +108,7 @@ packages:
       - name: transaction
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -116,7 +116,7 @@ packages:
       - name: purchase
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
@@ -124,7 +124,7 @@ packages:
       - name: sell
         limits:
           timeout: 30000
-          memory: 128
+          memory: 512
         binary: false
         runtime: 'python:default'
         web: true
