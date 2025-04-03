@@ -15,6 +15,9 @@ class PortfolioService(service.Service):
 
     def update_portfolio(self, portfolio_request):
         return self.put(constants.urls.portfolio, portfolio_request)
+    
+    def delete_portfolio(self, portfolio_request):
+        return self.delete(constants.urls.portfolio, portfolio_request)
 
     def contribute_portfolio(self, contribution_request):
         return self.post(constants.urls.contribute, contribution_request)
