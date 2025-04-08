@@ -70,3 +70,7 @@ fi
 if [ -f ../packages/stock/dailyprice/__main__.py ]; then
   copy_lib stock/dailyprice
 fi
+
+if [ -f ../packages/user/create/__main__.py ]; then
+  copy_lib user/create
+fi
