@@ -19,7 +19,7 @@ def main(args):
     portfolios = portfolio_dao.get_portfolios_for_user(authorized_user['sub'])
     return {
         'statusCode': 200,
-        'body': map(
+        'body': list(map(
             lambda p: {
                 'id': p['id'],
                 'name': p['portfolio_name'],
@@ -37,7 +37,7 @@ def main(args):
                 'createdAt': p['portfolio_created_at']
             },
             portfolios
-        )
+        ))
     }
 
 
