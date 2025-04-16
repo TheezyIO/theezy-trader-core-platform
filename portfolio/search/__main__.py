@@ -34,7 +34,7 @@ def main(args):
                 'changeIn7Days': p['portfolio_change_7d'],
                 'changeIn30Days': p['portfolio_change_30d'],
                 'changeIn365Days': p['portfolio_change_365d'],
-                'createdAt': p['portfolio_created_at']
+                'createdAt': str(p['portfolio_created_at'])
             },
             portfolios
         ))

@@ -31,7 +31,7 @@ def main(args):
             'followers': record['portfolio_followers'],
             'ownerName': record['portfolio_owner_name'],
             'totalStocks': record['portfolio_total_stocks'],
-            'createdAt': record['portfolio_created_at'],
+            'createdAt': str(record['portfolio_created_at']),
             'equityBalance': record['portfolio_equity_balance'],
             'cashBalance': record['portfolio_cash_balance'],
             'isFollowing': True if record['portfolio_follower_user_id'] else False,
