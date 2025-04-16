@@ -29,8 +29,8 @@ class PortfolioDao:
             FROM
                 portfolio
             INNER JOIN user ON user.id = portfolio.user_id
-            LEFT JOIN portfolio_follower ON portfolio_follower.portfolio_id = portfolio.id AND portfolio_follower.user_id = {user_id}
-            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = {user_id}
+            LEFT JOIN portfolio_follower ON portfolio_follower.portfolio_id = portfolio.id AND portfolio_follower.user_id = '{user_id}'
+            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = '{user_id}'
         """
 
         return self.mysql_client.query(query)
@@ -61,8 +61,8 @@ class PortfolioDao:
                 portfolio
             INNER JOIN portfolio_balance ON portfolio_balance.portfolio_id = portfolio.id
             INNER JOIN user ON user.id = portfolio.user_id
-            LEFT JOIN portfolio_follower ON portfolio_follower.portfolio_id = portfolio.id AND portfolio_follower.user_id = {user_id}
-            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = {user_id}
+            LEFT JOIN portfolio_follower ON portfolio_follower.portfolio_id = portfolio.id AND portfolio_follower.user_id = '{user_id}'
+            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = '{user_id}'
             
             WHERE portfolio.id = {portfolio_id}
         """
