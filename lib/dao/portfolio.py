@@ -54,7 +54,7 @@ class PortfolioDao:
                 portfolio_follower.user_id portfolio_follower_user_id,
                 portfolio_member.user_id portfolio_member_user_id,
                 user.id portfolio_owner_id,
-                user.username portfolio_owner_name
+                user.username portfolio_owner_name,
 
                 (SELECT COUNT(portfolio_stock.id) FROM portfolio_stock WHERE portfolio_stock.portfolio_id = {portfolio_id}) portfolio_total_stocks
             FROM
