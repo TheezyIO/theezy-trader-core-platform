@@ -114,6 +114,23 @@ class MySQLClient:
         self.cursor.close()
         self.cursor = None
 
+    def delete(self, table_name, where_clause):
+        if not where_clause:
+            return
+
+        if not self.is_connected():
+            self.connect()
+
+        self.cursor = self.connection.cursor()
+
+        logger.debug(f'Executing DELETE FROM {table_name} WHERE {where_clause}')
+        self.cursor.execute(f'DELETE FROM {table_name} WHERE {where_clause}')
+
+        self.connection.commit()
+
+        self.cursor.close()
+        self.cursor = None
+
     def __del__(self):
         if self.connection:
             self.connection.close()

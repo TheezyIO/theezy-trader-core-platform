@@ -77,3 +77,9 @@ class PortfolioDao:
 
     def update_portfolio(self, portfolio_update, portfolio_id):
         self.mysql_client.update('portfolio', portfolio_update, f'id={portfolio_id}')
+
+    def follow_portfolio(self, portfolio_id, user_id):
+        self.mysql_client.insert('portfolio_follower', [{'portfolio_id': portfolio_id, 'user_id': user_id}])
+
+    def unfollow_portfolio(self, portfolio_id, user_id):
+        self.mysql_client.delete('portfolio_follower', f'portfolio_id={portfolio_id} AND user_id={mysqldb.quote(user_id)}')
