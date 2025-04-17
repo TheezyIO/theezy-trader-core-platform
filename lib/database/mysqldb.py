@@ -72,8 +72,9 @@ class MySQLClient:
         return self.get_results()
 
     def insert(self, table_name, rows):
+        inserted_ids = []
         if not rows:
-            return
+            return inserted_ids
 
         if not self.is_connected():
             self.connect()
@@ -85,6 +86,28 @@ class MySQLClient:
             column_fields  = ', '.join(columns)
             logger.debug(f'Executing INSERT INTO {table_name} ({column_fields}) VALUES ({values})')
             self.cursor.execute(f'INSERT INTO {table_name} ({column_fields}) VALUES ({values})')
+            inserted_ids.append(self.cursor.lastrowid)
+
+        self.connection.commit()
+
+        self.cursor.close()
+        self.cursor = None
+
+        return inserted_ids
+
+    def update(self, table_name, update, where_clause):
+        if not update:
+            return
+
+        if not self.is_connected():
+            self.connect()
+
+        self.cursor = self.connection.cursor()
+
+        columns = update.keys()
+        values = ', '.join(map(lambda c: f'{c} = {quote(update[c])}', columns))
+        logger.debug(f'Executing UPDATE {table_name} SET {values} WHERE {where_clause}')
+        self.cursor.execute(f'UPDATE {table_name} SET {values} WHERE {where_clause}')
 
         self.connection.commit()
 

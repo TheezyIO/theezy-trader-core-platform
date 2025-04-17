@@ -18,8 +18,17 @@ def main(args):
         return {'statusCode': 400, 'body': { 'message': 'Missing portfolio id'}}
 
     portfolio_dao = portfolio.PortfolioDao()
-    response = portfolio_dao.get_portfolio_by_id(args['id'], authorized_user['sub'])
-    record = response[0] if response else None
+    record = portfolio_dao.get_portfolio_by_id(args['id'], authorized_user['sub'])
+
+    if not record:
+        return {
+            'statusCode': 404,
+            'body': {
+                'status': 'failed',
+                'message': 'Portfolio not found'
+            }
+        }
+
     return {
         'statusCode': 200,
         'body': {
@@ -42,7 +51,7 @@ def main(args):
             'changeIn30Days': record['portfolio_change_30d'],
             'changeIn365Days': record['portfolio_change_365d']
         }
-    } if record else {'statusCode': 404, 'body': { 'message': 'Portfolio not found'}}
+    }
 
 
 if __name__ == '__main__':

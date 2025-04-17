@@ -67,4 +67,13 @@ class PortfolioDao:
             WHERE portfolio.id = {portfolio_id}
         """
 
-        return self.mysql_client.query(query)
+        record = self.mysql_client.query(query)
+        return record[0] if record else None
+
+    def create_portfolio(self, portfolio):
+        [inserted_id] = self.mysql_client.insert('portfolio', [portfolio])
+        portfolio_balance = {'cash': 0, 'equity': 0, 'portfolio_id': inserted_id}
+        self.mysql_client.insert('portfolio_balance', [portfolio_balance])
+
+    def update_portfolio(self, portfolio_update, portfolio_id):
+        self.mysql_client.update('portfolio', portfolio_update, f'id={portfolio_id}')
