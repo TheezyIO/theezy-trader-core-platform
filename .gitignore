@@ -1,0 +1,12 @@
+# JetBrains
+# ==========
+.idea/
+
+# Python
+# ==========
+venv/
+__pycache__/
+
+# Project
+# ==========
+/__run__.py

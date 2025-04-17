@@ -1,0 +1,147 @@
+environment:
+  AUTH0_AUDIENCE: '${AUTH0_AUDIENCE}'
+  AUTH0_JWKS_URI: '${AUTH0_JWKS_URI}'
+  LOG_DESTINATIONS: '[{"logtail":{"token":"${LOG_TAIL_SOURCE_TOKEN}"}}]'
+  LOG_LEVEL: '${LOG_LEVEL}'
+  MYSQL_HOST: data.gscbinc.com
+  MYSQL_USER: '${MYSQL_USER}'
+  MYSQL_DATABASE: '${MYSQL_DATABASE}'
+  MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+  POLYGON_API_KEY: '${POLYGON_API_KEY}'
+packages:
+  - name: portfolio
+    shared: false
+    functions:
+      - name: search
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: view
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: create
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: update
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: contribute
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: follower
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: member
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+  - name: account-balance
+    shared: false
+    functions:
+      - name: deposit
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: view
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+  - name: stock
+    functions:
+      - name: details
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: search
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: transaction
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: purchase
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: sell
+        limits:
+          timeout: 30000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: true
+        main: ''
+      - name: dailyprice
+        limits:
+          timeout: 900000
+          memory: 512
+        binary: false
+        runtime: 'python:default'
+        web: false
+        triggers:
+          - name: fetch-daily-prices
+            sourceType: scheduler
+            sourceDetails:
+              cron: 0 6 * * *
+        main: ''
+
+
+

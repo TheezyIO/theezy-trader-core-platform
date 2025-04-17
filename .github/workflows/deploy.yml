@@ -1,0 +1,49 @@
+name: digitalocean-deploy
+
+on:
+  push:
+    branches: [ "sandbox" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    name: Deploy to DigitalOcean
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: app/packages
+          ref: ${{ github.event.ref }}
+        name: Checkout repository
+      - name: List files in checkout directory
+        run: ls -al app/packages
+      - name: Move Project configuration to Application root
+        run: mv app/packages/project.yml app
+      - name: Move Lib folder to Application root
+        run: mv app/packages/lib app/lib
+      - name: Move Ignore file to Application root
+        run: mv app/packages/.ignore app
+      - name: Remove git and github related folders
+        run: rm -rf app/packages/.git app/packages/.github
+      - name: Create configuration directory
+        run: mkdir -p ${{ github.workspace }}/config/doctl
+      - name: Install doctl cli
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Install DigitalOcean deployment configuration
+        run: doctl serverless install
+      - name: Connect to DigitalOcean Functions namespace
+        run: doctl serverless connect ${{ vars.DIGITALOCEAN_FUNCTIONS_NAMESPACE }}
+      - name: Deploy to DigitalOcean
+        run: doctl serverless deploy app --remote-build
+        env:
+          AUTH0_AUDIENCE: ${{ vars.AUTH0_AUDIENCE }}
+          AUTH0_JWKS_URI: ${{ vars.AUTH0_JWKS_URI }}
+          LOG_TAIL_SOURCE_TOKEN: ${{ secrets.LOG_TAIL_SOURCE_TOKEN }}
+          LOG_LEVEL: ${{ vars.LOG_LEVEL }}
+          MYSQL_DATABASE: ${{ vars.MYSQL_DATABASE }}
+          MYSQL_HOST: ${{ vars.MYSQL_HOST }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
