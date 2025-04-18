@@ -1,7 +1,8 @@
 from lib.common.logger import Logger
-from lib.security import authorization
-from lib.services import portfolio
 from lib.common.utils import validate_all_fields
+from lib.security import authorization
+from lib.dao import portfolio
+from datetime import datetime
 
 logger = Logger('portfolio.create')
 
@@ -25,15 +26,33 @@ def main(args):
     if not validate_all_fields(field_validation_list, args):
         return {'statusCode': 400, 'body': { 'message': 'Missing or invalid parameters'}}
 
+    if args['minimumDeposit'] < 100:
+        return {'statusCode': 400, 'body': { 'message': 'Minimum deposit must be at least $1.00'}}
+
+    if args['maxMembers'] <= 1:
+        return {'statusCode': 400, 'body': { 'message': 'Maximum number of members must be at least 2'}}
+
     request_body = {
         'name': args['name'],
         'description': args['description'],
-        'minimumDeposit': args['minimumDeposit'],
-        'maxMembers': args['maxMembers']
+        'minimum_deposit': args['minimumDeposit'],
+        'max_members': args['maxMembers'],
+        'user_id': authorized_user['sub'],
+        'created_at': datetime.now(),
+        'change_7d': 0,
+        'change_30d': 0,
+        'change_365d': 0,
+        'followers': 0,
+        'members': 0
     }
-    logger.info(f'Creating portfolio... {request_body}')
 
-    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    response = portfolio_service.create_portfolio(request_body)
+    portfolio_dao = portfolio.PortfolioDao()
+    portfolio_dao.create_portfolio(request_body)
 
-    return portfolio_service.send_response(response)
+    return {
+        'statusCode': 200,
+        'body': {
+            'message': 'Portfolio created successfully',
+            'status': 'success'
+        }
+    }

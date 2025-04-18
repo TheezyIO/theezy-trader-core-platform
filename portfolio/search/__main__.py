@@ -1,6 +1,6 @@
 from lib.common.logger import Logger
+from lib.dao import portfolio
 from lib.security import authorization
-from lib.services import portfolio
 
 logger = Logger(f'portfolio.search')
 
@@ -15,9 +15,30 @@ def main(args):
     if args['http']['method'] != 'GET':
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
 
-    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    response = portfolio_service.get_portfolios()
-    return portfolio_service.send_response(response)
+    portfolio_dao = portfolio.PortfolioDao()
+    portfolios = portfolio_dao.get_portfolios_for_user(authorized_user['sub'])
+    return {
+        'statusCode': 200,
+        'body': list(map(
+            lambda p: {
+                'id': p['id'],
+                'name': p['portfolio_name'],
+                'description': p['portfolio_description'],
+                'isFollowing': True if p['portfolio_follower_user_id'] else False,
+                'isMember': True if p['portfolio_member_user_id'] else False,
+                'minimumDeposit': p['portfolio_minimum_deposit'],
+                'maxMembers': p['portfolio_max_members'],
+                'members': p['portfolio_members'],
+                'followers': p['portfolio_followers'],
+                'ownerName': p['portfolio_owner_name'],
+                'changeIn7Days': p['portfolio_change_7d'],
+                'changeIn30Days': p['portfolio_change_30d'],
+                'changeIn365Days': p['portfolio_change_365d'],
+                'createdAt': str(p['portfolio_created_at'])
+            },
+            portfolios
+        ))
+    }
 
 
 if __name__ == '__main__':

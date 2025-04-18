@@ -1,6 +1,6 @@
 from lib.common.logger import Logger
 from lib.security import authorization
-from lib.services import portfolio
+from lib.dao import portfolio
 
 logger = Logger('portfolio.view')
 
@@ -17,9 +17,41 @@ def main(args):
     if 'id' not in args:
         return {'statusCode': 400, 'body': { 'message': 'Missing portfolio id'}}
 
-    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    response = portfolio_service.get_portfolio(args['id'])
-    return portfolio_service.send_response(response)
+    portfolio_dao = portfolio.PortfolioDao()
+    record = portfolio_dao.get_portfolio_by_id(args['id'], authorized_user['sub'])
+
+    if not record:
+        return {
+            'statusCode': 404,
+            'body': {
+                'status': 'failed',
+                'message': 'Portfolio not found'
+            }
+        }
+
+    return {
+        'statusCode': 200,
+        'body': {
+            'id': record['id'],
+            'name': record['portfolio_name'],
+            'description': record['portfolio_description'],
+            'maxMembers': record['portfolio_max_members'],
+            'members': record['portfolio_members'],
+            'followers': record['portfolio_followers'],
+            'ownerName': record['portfolio_owner_name'],
+            'totalStocks': record['portfolio_total_stocks'],
+            'createdAt': str(record['portfolio_created_at']),
+            'equityBalance': record['portfolio_equity_balance'],
+            'cashBalance': record['portfolio_cash_balance'],
+            'isFollowing': True if record['portfolio_follower_user_id'] else False,
+            'isMember': True if record['portfolio_member_user_id'] else False,
+            'isOwner': record['portfolio_owner_id'] == authorized_user['sub'],
+            'minimumDeposit': record['portfolio_minimum_deposit'],
+            'changeIn7Days': record['portfolio_change_7d'],
+            'changeIn30Days': record['portfolio_change_30d'],
+            'changeIn365Days': record['portfolio_change_365d']
+        }
+    }
 
 
 if __name__ == '__main__':
