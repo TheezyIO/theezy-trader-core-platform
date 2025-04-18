@@ -150,16 +150,3 @@ packages:
             sourceDetails:
               cron: 0 6 * * *
         main: ''
-  - name: user
-    shared: false
-    functions:
-      - name: create
-        limits:
-          timeout: 30000
-          memory: 512
-        binary: false
-        runtime: 'python:default'
-        web: true
-        main: ''
-
-
