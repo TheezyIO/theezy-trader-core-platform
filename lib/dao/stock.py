@@ -27,6 +27,23 @@ class StockDao:
 
         return self.mysql_client.query(query)
 
+    def get_stocks_in_portfolio(self, portfolio_id):
+        query = f"""
+            SELECT
+                stock.id stock_id,
+                stock.name stock_name,
+                stock.ticker stock_ticker,
+                portfolio_stock.id portfolio_stock_id,
+                portfolio_stock.average_price portfolio_stock_average_price,
+                portfolio_stock.amount portfolio_stock_amount
+            FROM
+                stock, portfolio_stock
+            WHERE
+                stock.id = portfolio_stock.stock_id AND portfolio_stock.portfolio_id = {portfolio_id}
+        """
+
+        return self.mysql_client.query(query)
+
     # Optimize this query to use BETWEEN instead of listing all dates
     def get_daily_prices_by_dates(self, stock_ticker, from_date, to_date):
         query = f"""
