@@ -5,9 +5,7 @@ from lib.common.utils import validate_all_fields
 
 logger = Logger('portfolio.delete')
 
-field_validation_list = [
-    ('id', str),
-]
+field_validation_list = [('id', str)]
 
 def main(args):
     logger.info(f'Function invocation started...')
@@ -21,13 +19,28 @@ def main(args):
 
     if not validate_all_fields(field_validation_list, args):
         return {'statusCode': 400, 'body': { 'message': 'Missing or invalid parameters'}}
-
-    request_body = {
-        'id': args['id'],
-    }
+    
+    portfolio_dao = portfolio.PortfolioDao()
+    portfolio_record = portfolio_dao.get_portfolio_by_id(args['id'], authorized_user['sub'])
+    
+    if not portfolio_record:
+        return {'statusCode': 404, 'body': { 'message': 'Portfolio not found', 'status': 'failed' }}
+    
+    if authorized_user['sub'] != portfolio_record['portfolio_owner_id']:
+        return {'statusCode': 403, 'body': { 'message': 'Unable to delete portfolio, user unauthorized', 'status': 'failed'}}
+    
+    if portfolio_record['portfolio_cash_balance'] != 0 or portfolio_record['portfolio_equity_balance'] != 0:
+        return {'statusCode': 403, 'body': { 'message': 'Unable to delete Portfolio with cash or equity assets', 'status': 'failed'}}
+    
+    request_body = {'id': args['id']}
     logger.info(f'Deleting portfolio... {request_body}')
+    
+    portfolio_dao.delete_portfolio(args['id'])
 
-    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    response = portfolio_service.delete_portfolio(request_body)
-
-    return portfolio_service.send_response(response)
+    return {
+        'statusCode': 200,
+        'body': {
+            'message': 'Portfolio deleted successfully',
+            'status': 'success'
+        }
+    }
