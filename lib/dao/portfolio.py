@@ -85,4 +85,4 @@ class PortfolioDao:
         self.mysql_client.delete('portfolio_follower', f'portfolio_id={portfolio_id} AND user_id={mysqldb.quote(user_id)}')
 
     def delete_portfolio(self, portfolio_id):
-        self.mysql_client.delete('portfolio', f'portfolio_id={portfolio_id}')
+        self.mysql_client.delete('portfolio', f'id={portfolio_id}')
