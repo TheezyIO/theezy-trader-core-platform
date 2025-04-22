@@ -32,9 +32,6 @@ def main(args):
     if portfolio_record['portfolio_cash_balance'] != 0 or portfolio_record['portfolio_equity_balance'] != 0:
         return {'statusCode': 403, 'body': { 'message': 'Unable to delete portfolio with cash or equity assets', 'status': 'failed' }}
     
-    request_body = {'id': args['id']}
-    logger.info(f'Deleting portfolio... {request_body}')
-    
     portfolio_dao.delete_portfolio(args['id'])
 
     return {
