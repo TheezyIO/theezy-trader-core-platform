@@ -1,6 +1,7 @@
 from lib.common.logger import Logger
 from lib.security import authorization
-from lib.services import account
+from lib.dao import account
+from datetime import datetime
 
 
 logger = Logger('account-balance.view')
@@ -15,8 +16,27 @@ def main(args):
 
     if args['http']['method'] != 'GET':
         return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
-
-    account_service = account.AccountService(args['http']['headers']['authorization'])
-    response = account_service.get_balance()
-
-    return account_service.send_response(response)
+    
+    account_dao = account.AccountDao()
+    account_record = account_dao.get_account_for_user(authorized_user['sub'])
+    
+    if not account_record:
+        account_dao.create_account(authorized_user['sub'])
+        return {
+            'statusCode': 201,
+            'body': {
+                'cashBalance': 0,
+                'equityBalance': 0,
+                'timestamp': str(datetime.now())
+            }
+        }
+    else:
+        return {
+            'statusCode': 200,
+            'body': {
+                # 'id': account_record['id'],
+                'cashBalance': account_record['cash'],
+                'equityBalance': account_record['equity'],
+                'timestamp': str(account_record['modified_at'])
+            }
+        }
