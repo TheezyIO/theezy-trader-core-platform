@@ -44,7 +44,7 @@ def main(args):
             }
     except Exception as e:
         return {
-            'statusCode': 500,
+            'statusCode': 400,
             'body': {
                 'message': f'Internal server error while viewing account for {authorized_user['sub']} : {str(e)}',
                 'status': 'failed'
