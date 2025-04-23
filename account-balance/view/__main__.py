@@ -23,18 +23,17 @@ def main(args):
     if not account_record:
         account_dao.create_account(authorized_user['sub'])
         return {
-            'statusCode': 201,
+            'statusCode': 200,
             'body': {
                 'cashBalance': 0,
                 'equityBalance': 0,
-                'timestamp': str(datetime.now())
+                'timestamp': datetime.now()
             }
         }
     else:
         return {
             'statusCode': 200,
             'body': {
-                # 'id': account_record['id'],
                 'cashBalance': account_record['cash'],
                 'equityBalance': account_record['equity'],
                 'timestamp': str(account_record['modified_at'])
