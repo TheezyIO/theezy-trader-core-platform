@@ -78,11 +78,17 @@ class PortfolioDao:
     def update_portfolio(self, portfolio_update, portfolio_id):
         self.mysql_client.update('portfolio', portfolio_update, f'id={portfolio_id}')
 
+    def update_portfolio_balance(self, portfolio_balance_update, portfolio_balance_id):
+        self.mysql_client.update('portfolio_balance', portfolio_balance_update, f'id={portfolio_balance_id}')
+
     def follow_portfolio(self, portfolio_id, user_id):
         self.mysql_client.insert('portfolio_follower', [{'portfolio_id': portfolio_id, 'user_id': user_id}])
 
     def unfollow_portfolio(self, portfolio_id, user_id):
         self.mysql_client.delete('portfolio_follower', f'portfolio_id={portfolio_id} AND user_id={mysqldb.quote(user_id)}')
+
+    def create_balance_transaction(self, transaction):
+        self.mysql_client.insert('portfolio_balance_transaction', [transaction])
 
     def delete_portfolio(self, portfolio_id):
         self.mysql_client.delete('portfolio', f'id={portfolio_id}')
