@@ -46,7 +46,7 @@ def main(args):
         return {
             'statusCode': 400,
             'body': {
-                'message': f'Internal server error while viewing account for {authorized_user['sub']} : {str(e)}',
+                'message': f"Internal server error while viewing account for {authorized_user['sub']} : {str(e)}",
                 'status': 'failed'
             }
         }
