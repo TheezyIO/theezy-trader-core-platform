@@ -22,9 +22,11 @@ class AccountDao:
                 user, account_balance 
             WHERE
                 user.id = account_balance.user_id AND user.id = '{user_id}'
+            LIMIT 1;
         """
-        
-        return self.mysql_client.query(query)
+
+        record = self.mysql_client.query(query)
+        return record[0] if record else None
 
     def create_account(self, user_id):
         account_balance_data = {'cash': 0, 'equity': 0, 'user_id': user_id}
