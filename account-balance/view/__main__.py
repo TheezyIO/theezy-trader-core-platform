@@ -24,7 +24,7 @@ def main(args):
         account_record = account_dao.get_account_for_user(authorized_user['sub'])
         
         if not account_record:
-            account_dao.create_account(authorized_user['sub'])
+            account_dao.create_balance(authorized_user['sub'])
             return {
                 'statusCode': 200,
                 'body': {
