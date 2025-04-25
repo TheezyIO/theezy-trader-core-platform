@@ -75,7 +75,7 @@ def main(args):
           'amount': args["deposit"],
           'transaction_type_id': 2,
           'portfolio_balance_id': portfolio_account_details['portfolio_balance_id'],
-          'user_id': args['sub']
+          'user_id': authorized_user['sub']
         }
         portfolio_dao.create_balance_transaction(new_portfolio_transaction)
 
