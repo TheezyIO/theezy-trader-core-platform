@@ -48,7 +48,7 @@ def main(args):
         }
         new_balance = account_record['cash'] + args['amount']
         account_dao.create_transaction(transaction_body)
-        account_dao.update_account({'amount': new_balance}, account_record['id'])
+        account_dao.update_account({'cash': new_balance}, account_record['id'])
 
         return {
             'statusCode': 200,
