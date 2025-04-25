@@ -36,4 +36,4 @@ class AccountDao:
         self.mysql_client.insert('account_balance_transaction', [transaction])
         
     def update_account(self, account_update, account_id):
-        self.mysql_client.update('account_balance', {account_update}, f'id={account_id}')
+        self.mysql_client.update('account_balance', account_update, f'id={account_id}')

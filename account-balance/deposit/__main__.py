@@ -46,8 +46,9 @@ def main(args):
             'transaction_type_id': 3, # TODO: Add Transaction Table DAO for dynamic id lookup
             'account_balance_id': account_record['id']
         }
+        new_balance = account_record['cash'] + args['amount']
         account_dao.create_transaction(transaction_body)
-        account_dao.update_account({'amount': account_record['cash'] + args['amount']}, account_record['id'])
+        account_dao.update_account({'amount': new_balance}, account_record['id'])
 
         return {
             'statusCode': 200,
