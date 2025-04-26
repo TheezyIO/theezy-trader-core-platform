@@ -1,3 +1,5 @@
+import traceback
+
 from lib.common.logger import Logger
 from lib.security import authorization
 from lib.dao import portfolio, account
@@ -108,10 +110,14 @@ def main(args):
             }
         }
     except Exception as e:
+        error_traceback = traceback.format_exc()
+
         return {
             'statusCode': 400,
             'body': {
                 'message': f"Internal server error while contributing to portfolio : {str(e)}",
-                'status': 'failed'
+                'status': 'failed',
+                'error_details': error_traceback
+
             }
         }
