@@ -72,23 +72,25 @@ def main(args):
 
         # Portfolio transactions
         new_portfolio_transaction =  {
-          'amount': args["deposit"],
+          'amount': args['deposit'],
           'transaction_type_id': 2,
           'portfolio_balance_id': portfolio_account_details['portfolio_balance_id'],
           'user_id': authorized_user['sub']
         }
         portfolio_dao.create_balance_transaction(new_portfolio_transaction)
 
-        new_balance = {'cash': portfolio_account_details['portfolio_cash_balance'] + args['deposit']}
+        new_balance = {
+            'cash': portfolio_account_details['portfolio_cash_balance'] + args['deposit']
+        }
         portfolio_dao.update_portfolio_balance(new_balance, portfolio_account_details['portfolio_balance_id'])
 
         # Account transactions
         account_dao = account.AccountDao()
 
         new_account_transaction =  {
-          'amount': args["deposit"],
+          'amount': args['deposit'],
           'transaction_type_id': 1,
-          'portfolio_balance_id': portfolio_account_details['account_balance_id'],
+          'account_balance_id': portfolio_account_details['account_balance_id'],
         }
         account_dao.create_transaction(new_account_transaction)
 
@@ -109,7 +111,7 @@ def main(args):
         return {
             'statusCode': 400,
             'body': {
-                'message': f"Internal server error while viewing account : {str(e)}",
+                'message': f"Internal server error while contributing to portfolio : {str(e)}",
                 'status': 'failed'
             }
         }
