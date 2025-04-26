@@ -53,7 +53,7 @@ class PortfolioDao:
                 portfolio
             INNER JOIN portfolio_balance ON portfolio.id = portfolio_balance.portfolio_id
             INNER JOIN account_balance ON account_balance.user_id = '{user_id}'
-            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = '${sub}'
+            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = '{user_id}'
             LEFT JOIN user ON user.id = portfolio.user_id
             
             WHERE portfolio.id = {portfolio_id};
