@@ -50,27 +50,24 @@ def main(args):
                 }
             }
 
+        if args['deposit'] < portfolio_account_details['minimum_deposit']:
+            return {
+                'statusCode': 422,
+                'body': {
+                    'message': 'Insufficient deposit amount',
+                    'status': 'failed'
+                }
+            }
+
         if portfolio_account_details['member_id'] != authorized_user['sub']:
-            logger.info('Current user is not portfolio member')
-            if args['deposit'] >= portfolio_account_details['minimum_deposit']:
-                new_member = {
-                    'portfolio_id': args["portfolioId"],
-                    'user_id': authorized_user['sub'],
-                    'contribution': args["deposit"],
-                    'earnings': 0,
-                }
-                portfolio_dao.create_portfolio_member(new_member)
-            else:
-                logger.info('Deposit is not sufficient')
-                return {
-                    'statusCode': 422,
-                    'body': {
-                        'message': 'Insufficient deposit amount',
-                        'status': 'failed'
-                    }
-                }
-        else:
-            logger.info('Current user is portfolio member')
+            logger.info('Current user is not portfolio member... adding new member')
+            new_member = {
+                'portfolio_id': args['portfolioId'],
+                'user_id': authorized_user['sub'],
+                'contribution': args['deposit'],
+                'earnings': 0,
+            }
+            portfolio_dao.create_portfolio_member(new_member)
 
         # Portfolio transactions
         new_portfolio_transaction =  {
