@@ -116,7 +116,7 @@ class PortfolioDao:
         """
 
         record = self.mysql_client.query(query)
-        return record[0] if record else None
+        return record[0] if record else {'user_net_contribution': 0, 'total_net_contribution': 0}
 
     def create_portfolio(self, portfolio):
         [inserted_id] = self.mysql_client.insert('portfolio', [portfolio])
