@@ -105,9 +105,9 @@ def main(args):
         return {
             'statusCode': 200,
             'body': {
-                'contribution_total': contribution_data['user_net_contribution'],
+                # 'contribution_total': contribution_data['user_net_contribution'],
                 # 'contribution_percentage': contribution_percentage,
-                'message': 'Successfully contributed funds to the portfolio',
+                'message': f"Successfully contributed funds to the portfolio. contribution_total: {str(contribution_data['user_net_contribution'])}",
                 'status': 'success'
             }
         }
