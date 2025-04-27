@@ -113,7 +113,7 @@ def main(args):
                 'message': 'Successfully contributed funds to the portfolio',
                 'status': 'success',
                 'data': {
-                    'contribution_total': round(float(contribution_data['user_net_contribution']), 2),
+                    'contribution_total': int(contribution_data['user_net_contribution']),
                     'contribution_percentage': round(float(contribution_percentage), 2)
                 }
             }
