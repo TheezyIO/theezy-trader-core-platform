@@ -77,6 +77,7 @@ class StockDao:
                 portfolio_stock.id portfolio_stock_id,
                 portfolio_stock.amount portfolio_stock_amount,
                 portfolio_stock.average_price portfolio_stock_average_price,
+                portfolio_stock.created_at portfolio_stock_created_at,
                 
                 portfolio_balance.id portfolio_balance_id,
                 portfolio_balance.cash portfolio_cash_balance,
@@ -99,6 +100,25 @@ class StockDao:
             )
             LEFT JOIN stock ON portfolio_stock.stock_id = stock.id AND stock.ticker = '{stock_ticker}'
             WHERE user.id = '{user_id}' AND portfolio.id = {portfolio_id}
+        """
+        return self.mysql_client.query(query)
+
+    def get_portfolio_stock_transactions(self, portfolio_stock_id):
+        query = f"""
+            SELECT
+                stock.id stock_id,
+                stock.name stock_name,
+                stock.ticker stock_ticker,
+                portfolio_stock.id portfolio_stock_id,
+                portfolio_stock_transaction.amount portfolio_stock_transaction_amount,
+                portfolio_stock_transaction.price portfolio_stock_transaction_price,
+                portfolio_stock_transaction.event_time portfolio_stock_transaction_event_time,
+                transaction_type.name transaction_type_name
+            FROM
+                stock, portfolio_stock, portfolio_stock_transaction, transaction_type
+            WHERE
+                stock.id = portfolio_stock.stock_id AND portfolio_stock.id = portfolio_stock_transaction.portfolio_stock_id AND
+                portfolio_stock_transaction.transaction_type_id = transaction_type.id AND portfolio_stock.id = {portfolio_stock_id}
         """
         return self.mysql_client.query(query)
 

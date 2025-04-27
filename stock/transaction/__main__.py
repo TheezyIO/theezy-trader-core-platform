@@ -1,6 +1,6 @@
 from lib.common.logger import Logger
 from lib.security import authorization
-from lib.services import stock
+from lib.dao import stock
 
 
 logger = Logger('stock.transaction')
@@ -19,7 +19,21 @@ def main(args):
     if not 'id' in args:
         return {'statusCode': 400, 'body': { 'message': 'Missing transaction id'}}
 
-    stock_service = stock.StockService(args['http']['headers']['authorization'])
-    response = stock_service.get_transactions(args['id'])
+    stock_dao = stock.StockDao()
+    transactions = stock_dao.get_portfolio_stock_transactions(args['id'])
 
-    return stock_service.send_response(response)
+    return {
+        'statusCode': 200,
+        'body': list(
+            map(
+                lambda t: {
+                    'id': t['stock_id'],
+                    'timestamp': t['portfolio_stock_transaction_event_time'],
+                    'type': t['transaction_type_name'],
+                    'amount': t['portfolio_stock_transaction_amount'],
+                    'price': t['portfolio_stock_transaction_price']
+                },
+                transactions
+            )
+        )
+    }

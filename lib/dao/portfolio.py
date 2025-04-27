@@ -70,6 +70,26 @@ class PortfolioDao:
         record = self.mysql_client.query(query)
         return record[0] if record else None
 
+    def get_portfolio_members(self, portfolio_id):
+        query = f"""
+            SELECT
+                user.id user_id,
+                user.username user_name,
+                
+                portfolio.id portfolio_id,
+                MIN(portfolio_member.created_at) portfolio_member_created_at,
+                SUM(portfolio_balance_transaction.amount) portfolio_balance_transaction_amount
+            FROM
+                portfolio, portfolio_member, portfolio_balance, portfolio_balance_transaction, user
+            WHERE
+                portfolio.id = portfolio_member.portfolio_id AND portfolio_member.user_id = user.id
+                AND portfolio.id = portfolio_balance.portfolio_id AND portfolio_balance.id = portfolio_balance_transaction.portfolio_balance_id
+                AND portfolio_balance_transaction.user_id = user.id AND portfolio_balance_transaction.transaction_type_id = 2 AND portfolio.id = {portfolio_id}
+            GROUP BY
+                user_id, user_name, portfolio_id
+        """
+        return self.mysql_client.query(query)
+
     def create_portfolio(self, portfolio):
         [inserted_id] = self.mysql_client.insert('portfolio', [portfolio])
         portfolio_balance = {'cash': 0, 'equity': 0, 'portfolio_id': inserted_id}
