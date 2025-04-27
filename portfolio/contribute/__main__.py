@@ -112,10 +112,10 @@ def main(args):
             'body': {
                 'message': 'Successfully contributed funds to the portfolio',
                 'status': 'success',
-                # 'data': {
-                #     'contribution_total': contribution_data['user_net_contribution'],
-                #     'contribution_percentage': round(contribution_percentage, 2)
-                # }
+                'data': {
+                    'contribution_total': int(contribution_data['user_net_contribution']),
+                    'contribution_percentage': round(contribution_percentage, 2)
+                }
             }
         }
     except Exception as e:
