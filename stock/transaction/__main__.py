@@ -28,7 +28,7 @@ def main(args):
             map(
                 lambda t: {
                     'id': t['stock_id'],
-                    'timestamp': t['portfolio_stock_transaction_event_time'],
+                    'timestamp': t['portfolio_stock_transaction_event_time'].isoformat(),
                     'type': t['transaction_type_name'],
                     'amount': t['portfolio_stock_transaction_amount'],
                     'price': t['portfolio_stock_transaction_price']
