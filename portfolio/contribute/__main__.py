@@ -102,30 +102,22 @@ def main(args):
         # Calculate Contribution Percentage
         contribution_data = portfolio_dao.get_contributions_for_user(authorized_user['sub'], portfolio_account_details['portfolio_balance_id'])
 
+        if contribution_data['total_net_contribution'] == 0:
+            contribution_percentage = 100.0
+        else:
+            contribution_percentage = (contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100
+
         return {
             'statusCode': 200,
             'body': {
-                # 'contribution_total': contribution_data['user_net_contribution'],
-                # 'contribution_percentage': contribution_percentage,
-                'message': f"Successfully contributed funds to the portfolio. contribution_total: {str(contribution_data['user_net_contribution'])}",
-                'status': 'success'
+                'message': 'Successfully contributed funds to the portfolio',
+                'status': 'success',
+                'data': {
+                    'contribution_total': contribution_data['user_net_contribution'],
+                    'contribution_percentage': contribution_percentage
+                }
             }
         }
-
-        # if contribution_data['total_net_contribution'] == 0:
-        #     contribution_percentage = 100.0
-        # else:
-        #     contribution_percentage = (contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100
-        #
-        # return {
-        #     'statusCode': 200,
-        #     'body': {
-        #         # 'contribution_total': contribution_data['user_net_contribution'],
-        #         'contribution_percentage': contribution_percentage,
-        #         'message': 'Successfully contributed funds to the portfolio',
-        #         'status': 'success'
-        #     }
-        # }
     except Exception as e:
         error_traceback = traceback.format_exc()
 
