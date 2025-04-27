@@ -106,8 +106,8 @@ def main(args):
             'statusCode': 200,
             'body': {
                 'contribution_total': contribution_data['user_net_contribution'],
-                'total_net_contribution': contribution_data['total_net_contribution'],
-                'message': 'Test Successfully contributed funds to the portfolio',
+                # 'contribution_percentage': contribution_percentage,
+                'message': 'Successfully contributed funds to the portfolio',
                 'status': 'success'
             }
         }
@@ -120,7 +120,7 @@ def main(args):
         # return {
         #     'statusCode': 200,
         #     'body': {
-        #         'contribution_total': contribution_data['user_net_contribution'],
+        #         # 'contribution_total': contribution_data['user_net_contribution'],
         #         'contribution_percentage': contribution_percentage,
         #         'message': 'Successfully contributed funds to the portfolio',
         #         'status': 'success'
