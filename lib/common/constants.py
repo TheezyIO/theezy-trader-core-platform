@@ -25,12 +25,8 @@ class Url:
     polygon = 'https://api.polygon.io'
     stock_quotes = '/v3/quotes/'
     stock_daily_aggregates = '/v2/aggs/ticker/{}/range/1/day/{}/{}'
-<<<<<<< HEAD
-    
-    user = '/user'
-=======
+
     stock_tickers = '/v3/reference/tickers'
     stock_ticker_snapshots = '/v2/snapshot/locale/us/markets/stocks/tickers'
->>>>>>> origin/main
 
 urls = Url()

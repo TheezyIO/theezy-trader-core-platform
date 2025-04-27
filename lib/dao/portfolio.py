@@ -1,5 +1,6 @@
 from lib.common.logger import Logger
 from lib.database import mysqldb
+from lib.common.utils import get_transaction_type_id
 
 logger = Logger('dao.portfolio')
 
@@ -40,7 +41,7 @@ class PortfolioDao:
             SELECT
                 portfolio.id,
                 portfolio.minimum_deposit,
-            
+
                 user.id owner_id,
                 portfolio_member.user_id member_id,
                 
@@ -93,6 +94,25 @@ class PortfolioDao:
             LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = '{user_id}'
             
             WHERE portfolio.id = {portfolio_id}
+        """
+
+        record = self.mysql_client.query(query)
+        return record[0] if record else None
+
+    def get_contributions_for_user(self, user_id, portfolio_balance_id):
+        contribution_id = get_transaction_type_id('CONTRIBUTION')
+        withdrawal_id = get_transaction_type_id('WITHDRAWAL')
+        query = f"""
+            SELECT
+              IFNULL(SUM(CASE WHEN user_id = '{user_id}' AND transaction_type_id = {contribution_id} THEN amount ELSE 0 END), 0) -
+              IFNULL(SUM(CASE WHEN user_id = '{user_id}' AND transaction_type_id = {withdrawal_id} THEN amount ELSE 0 END), 0) AS user_net_contribution,
+            
+              IFNULL(SUM(CASE WHEN transaction_type_id = {contribution_id} THEN amount ELSE 0 END), 0) -
+              IFNULL(SUM(CASE WHEN transaction_type_id = {withdrawal_id} THEN amount ELSE 0 END), 0) AS total_net_contribution
+            FROM 
+                portfolio_balance_transaction
+            WHERE 
+                portfolio_balance_id = {portfolio_balance_id};
         """
 
         record = self.mysql_client.query(query)
