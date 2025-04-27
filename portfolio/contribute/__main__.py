@@ -114,7 +114,7 @@ def main(args):
                 'status': 'success',
                 'data': {
                     'contribution_total': str(contribution_data['user_net_contribution']),
-                    'contribution_percentage': str(contribution_percentage)
+                    'contribution_percentage': contribution_percentage
                 }
             }
         }
