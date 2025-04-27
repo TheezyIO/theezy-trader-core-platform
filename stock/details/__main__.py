@@ -88,7 +88,7 @@ def main(args):
             'priceChart': price_chart,
             'ticker': args['ticker'],
             'name': stock_details['stock_name'],
-            'timestamp': stock_details['portfolio_stock_created_at'],
+            'timestamp': stock_details['portfolio_stock_created_at'].isoformat(),
             'averageCost': stock_details['portfolio_stock_average_price'],
             'amount': stock_details['portfolio_stock_amount'],
             'portfolioBalance': portfolio_balance,
