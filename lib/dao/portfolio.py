@@ -90,6 +90,52 @@ class PortfolioDao:
         """
         return self.mysql_client.query(query)
 
+    def get_portfolio_and_account_by_user_and_portfolio(self, user_id,
+        portfolio_id):
+        query = f"""
+            SELECT
+                portfolio.id,
+                portfolio.minimum_deposit,
+                user.id owner_id,
+                portfolio_member.user_id member_id,
+
+                account_balance.id account_balance_id,
+                account_balance.cash account_cash_balance,
+                account_balance.equity account_equity_balance,
+                portfolio_balance.id portfolio_balance_id,
+                portfolio_balance.cash portfolio_cash_balance
+            FROM
+                portfolio
+            INNER JOIN portfolio_balance ON portfolio.id = portfolio_balance.portfolio_id
+            INNER JOIN account_balance ON account_balance.user_id = '{user_id}'
+            LEFT JOIN portfolio_member ON portfolio_member.portfolio_id = portfolio.id AND portfolio_member.user_id = '{user_id}'
+            LEFT JOIN user ON user.id = portfolio.user_id
+
+            WHERE portfolio.id = {portfolio_id};
+        """
+
+        record = self.mysql_client.query(query)
+        return record[0] if record else None
+
+    def get_contributions_for_user(self, user_id, portfolio_balance_id):
+        contribution_id = get_transaction_type_id('CONTRIBUTION')
+        withdrawal_id = get_transaction_type_id('WITHDRAWAL')
+        query = f"""
+            SELECT
+              IFNULL(SUM(CASE WHEN user_id = '{user_id}' AND transaction_type_id = {contribution_id} THEN amount ELSE 0 END), 0) -
+              IFNULL(SUM(CASE WHEN user_id = '{user_id}' AND transaction_type_id = {withdrawal_id} THEN amount ELSE 0 END), 0) AS user_net_contribution,
+
+              IFNULL(SUM(CASE WHEN transaction_type_id = {contribution_id} THEN amount ELSE 0 END), 0) -
+              IFNULL(SUM(CASE WHEN transaction_type_id = {withdrawal_id} THEN amount ELSE 0 END), 0) AS total_net_contribution
+            FROM 
+                portfolio_balance_transaction
+            WHERE 
+                portfolio_balance_id = {portfolio_balance_id};
+        """
+
+        record = self.mysql_client.query(query)
+        return record[0] if record else {'user_net_contribution': 0, 'total_net_contribution': 0}
+
     def create_portfolio(self, portfolio):
         [inserted_id] = self.mysql_client.insert('portfolio', [portfolio])
         portfolio_balance = {'cash': 0, 'equity': 0, 'portfolio_id': inserted_id}
@@ -109,3 +155,9 @@ class PortfolioDao:
 
     def create_balance_transaction(self, transaction):
         self.mysql_client.insert('portfolio_balance_transaction', [transaction])
+
+    def delete_portfolio(self, portfolio_id):
+        self.mysql_client.delete('portfolio', f'id={portfolio_id}')
+
+    def create_portfolio_member(self, portfolio_member):
+        self.mysql_client.insert('portfolio_member', [portfolio_member])
