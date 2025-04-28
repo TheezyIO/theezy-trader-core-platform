@@ -3,7 +3,7 @@ import traceback
 from lib.common.logger import Logger
 from lib.security import authorization
 from lib.dao import portfolio, account
-from lib.common.utils import validate_all_fields
+from lib.common.utils import validate_all_fields, float_to_scaled_int
 
 logger = Logger('portfolio.contribute')
 
@@ -105,7 +105,7 @@ def main(args):
         if contribution_data['total_net_contribution'] == 0:
             contribution_percentage = 100.0
         else:
-            contribution_percentage = (contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100
+            contribution_percentage = float_to_scaled_int((contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100)
 
         return {
             'statusCode': 200,
@@ -114,7 +114,7 @@ def main(args):
                 'status': 'success',
                 'data': {
                     'contribution_total': int(contribution_data['user_net_contribution']),
-                    'contribution_percentage': round(float(contribution_percentage), 2)
+                    'contribution_percentage': contribution_percentage
                 }
             }
         }
