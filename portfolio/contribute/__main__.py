@@ -1,4 +1,5 @@
 import traceback
+from tkinter.constants import ROUND
 
 from lib.common.logger import Logger
 from lib.security import authorization
@@ -105,7 +106,8 @@ def main(args):
         if contribution_data['total_net_contribution'] == 0:
             contribution_percentage = 100.0
         else:
-            contribution_percentage = float_to_scaled_int((contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100)
+            contribution_percentage = round(((contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100), 2)
+            contribution_percentage = int(contribution_percentage * 100)
 
         return {
             'statusCode': 200,
