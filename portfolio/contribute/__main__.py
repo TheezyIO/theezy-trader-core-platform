@@ -106,7 +106,7 @@ def main(args):
         if contribution_data['total_net_contribution'] == 0:
             contribution_percentage = 100.0
         else:
-            contribution_percentage = round(((contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100), 2)
+            contribution_percentage = round(float((contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100), 2)
             contribution_percentage = int(contribution_percentage * 100)
 
         return {
