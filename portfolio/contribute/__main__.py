@@ -106,8 +106,7 @@ def main(args):
         if contribution_data['total_net_contribution'] == 0:
             contribution_percentage = 100.0
         else:
-            contribution_percentage = round(float((contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100), 2)
-            contribution_percentage = int(contribution_percentage * 100)
+            contribution_percentage = (contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100
 
         return {
             'statusCode': 200,
@@ -116,7 +115,7 @@ def main(args):
                 'status': 'success',
                 'data': {
                     'contribution_total': int(contribution_data['user_net_contribution']),
-                    'contribution_percentage': contribution_percentage
+                    'contribution_percentage': f"Type of value {str(contribution_percentage)}: {type(contribution_percentage)}"
                 }
             }
         }
