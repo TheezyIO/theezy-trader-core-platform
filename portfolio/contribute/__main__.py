@@ -114,7 +114,7 @@ def main(args):
                 'message': 'Successfully contributed funds to the portfolio',
                 'status': 'success',
                 'data': {
-                    'contribution_total': int(contribution_data['user_net_contribution']),
+                    'contribution_total': f"Type of value {str(contribution_data['user_net_contribution'])}: {type(contribution_data['user_net_contribution'])}",
                     'contribution_percentage': f"Type of value {str(contribution_percentage)}: {type(contribution_percentage)}"
                 }
             }
