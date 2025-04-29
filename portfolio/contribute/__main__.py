@@ -104,7 +104,7 @@ def main(args):
         contribution_data = portfolio_dao.get_contributions_for_user(authorized_user['sub'], portfolio_account_details['portfolio_balance_id'])
 
         if contribution_data['total_net_contribution'] == 0:
-            contribution_percentage = 100.0
+            contribution_percentage = 100
         else:
             contribution_percentage = (contribution_data['user_net_contribution'] / contribution_data['total_net_contribution']) * 100
 
@@ -114,8 +114,8 @@ def main(args):
                 'message': 'Successfully contributed funds to the portfolio',
                 'status': 'success',
                 'data': {
-                    'contribution_total': f"Type of value {str(contribution_data['user_net_contribution'])}: {type(contribution_data['user_net_contribution'])}",
-                    'contribution_percentage': f"Type of value {str(contribution_percentage)}: {type(contribution_percentage)}"
+                    'contribution_total': f"Type of value {str(contribution_data['user_net_contribution'])}",
+                    'contribution_percentage': f"Type of value {str(contribution_percentage)}"
                 }
             }
         }
