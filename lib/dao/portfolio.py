@@ -1,4 +1,5 @@
 from lib.common.logger import Logger
+from lib.common.utils import get_transaction_type_id
 from lib.database import mysqldb
 
 logger = Logger('dao.portfolio')
