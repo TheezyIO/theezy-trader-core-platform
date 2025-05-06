@@ -1,10 +1,9 @@
 import traceback
-from tkinter.constants import ROUND
 
 from lib.common.logger import Logger
 from lib.security import authorization
 from lib.dao import portfolio, account
-from lib.common.utils import validate_all_fields, float_to_scaled_int
+from lib.common.utils import validate_all_fields
 
 logger = Logger('portfolio.contribute')
 
