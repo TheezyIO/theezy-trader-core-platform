@@ -114,7 +114,7 @@ def main(args):
                 'status': 'success',
                 'data': {
                     'contribution_total': int(contribution_data['user_net_contribution']),
-                    'contribution_percentage': round(float(contribution_percentage), 2)
+                    'contribution_percentage': int(round(float(contribution_percentage), 2))
                 }
             }
         }
