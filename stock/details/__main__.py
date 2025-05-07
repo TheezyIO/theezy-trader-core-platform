@@ -40,7 +40,7 @@ def main(args):
         return {'statusCode': 400, 'body': { 'message': 'Missing required field parameters'}}
 
     stock_dao = stock.StockDao()
-    portfolio_stock_response = stock_dao.get_portfolio_stock_details(args['portfolioId'], args['ticker'], authorized_user['sub'])
+    portfolio_stock_response = stock_dao.get_portfolio_stock_details(args['portfolioId'], args['ticker'])
 
     if not portfolio_stock_response:
         return {
