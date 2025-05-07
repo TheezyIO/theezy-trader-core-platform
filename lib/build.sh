@@ -39,6 +39,10 @@ if [ -f ../packages/portfolio/follower/__main__.py ]; then
   copy_lib portfolio/follower
 fi
 
+if [ -f ../packages/portfolio/delete/__main__.py ]; then
+    copy_lib portfolio/delete
+fi
+
 if [ -f ../packages/portfolio/member/__main__.py ]; then
   copy_lib portfolio/member
 fi
