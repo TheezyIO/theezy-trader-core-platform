@@ -1,9 +1,10 @@
 from lib.common.logger import Logger
 from lib.security import authorization
-from lib.services import account
-
+from lib.dao import account
+from datetime import datetime
 
 logger = Logger('account-balance.view')
+
 
 def main(args):
     logger.info(f'Function invocation started...')
@@ -11,12 +12,41 @@ def main(args):
     authorized_user = authorization.verify_header(args)
 
     if not authorized_user:
-        return {'statusCode': 401, 'body': { 'message': 'Unauthorized'}}
+        return {'statusCode': 401, 'body': {'message': 'Unauthorized'}}
 
     if args['http']['method'] != 'GET':
-        return {'statusCode': 405, 'body': { 'message': 'Method not allowed'}}
+        return {'statusCode': 405, 'body': {'message': 'Method not allowed'}}
 
-    account_service = account.AccountService(args['http']['headers']['authorization'])
-    response = account_service.get_balance()
+    account_dao = account.AccountDao()
 
-    return account_service.send_response(response)
+    try:
+        account_record = account_dao.get_account_for_user(
+            authorized_user['sub'])
+
+        if not account_record:
+            account_dao.create_balance(authorized_user['sub'])
+            return {
+                'statusCode': 200,
+                'body': {
+                    'cashBalance': 0,
+                    'equityBalance': 0,
+                    'timestamp': datetime.now()
+                }
+            }
+        else:
+            return {
+                'statusCode': 200,
+                'body': {
+                    'cashBalance': account_record['cash'],
+                    'equityBalance': account_record['equity'],
+                    'timestamp': str(account_record['modified_at'])
+                }
+            }
+    except Exception as e:
+        return {
+            'statusCode': 400,
+            'body': {
+                'message': f"Internal server error while viewing account : {str(e)}",
+                'status': 'failed'
+            }
+        }
