@@ -1,7 +1,7 @@
 from lib.common.logger import Logger
 from lib.security import authorization
-from lib.services import portfolio
 from lib.common.utils import validate_all_fields
+from lib.dao import portfolio
 
 logger = Logger('portfolio.member')
 
@@ -20,7 +20,21 @@ def main(args):
     if not validate_all_fields(field_validation_list, args):
         return {'statusCode': 400, 'body': { 'message': 'Missing or invalid parameters'}}
 
-    portfolio_service = portfolio.PortfolioService(args['http']['headers']['authorization'])
-    response = portfolio_service.get_portfolio_members(args['portfolioId'])
+    portfolio_dao = portfolio.PortfolioDao()
+    portfolio_members = portfolio_dao.get_portfolio_members(args['portfolioId'])
 
-    return portfolio_service.send_response(response)
+    return {
+        'statusCode': 200,
+        'body': list(
+            map(
+                lambda member: {
+                    'id': member['user_id'],
+                    'name': member['user_name'],
+                    'contributions': member['portfolio_balance_transaction_amount'],
+                    'earnings': 0,
+                    'joinedAt': member['portfolio_member_created_at']
+                },
+                portfolio_members
+            )
+        )
+    }
