@@ -110,8 +110,8 @@ def main(args):
         return {
             'statusCode': 200,
             'body': {
-                'contribution_total': int(contribution_data['user_net_contribution']),
-                'contribution_percentage': int(round(contribution_percentage, 2))
+                'contributionTotal': int(contribution_data['user_net_contribution']),
+                'contributionPercentage': int(round(contribution_percentage, 2))
             }
         }
     except Exception as e:
