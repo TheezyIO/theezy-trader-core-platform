@@ -84,7 +84,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: view
