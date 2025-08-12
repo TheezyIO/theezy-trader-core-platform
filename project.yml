@@ -17,7 +17,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: view
@@ -25,7 +25,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: create
@@ -33,7 +33,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: update
@@ -41,7 +41,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: contribute
@@ -49,7 +49,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: follower
@@ -57,7 +57,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: member
@@ -65,7 +65,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: delete
@@ -73,7 +73,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
   - name: account-balance
@@ -102,7 +102,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: search
@@ -110,7 +110,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: transaction
@@ -118,7 +118,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: purchase
@@ -126,7 +126,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: sell
@@ -134,7 +134,7 @@ packages:
           timeout: 30000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: true
         main: ''
       - name: dailyprice
@@ -142,7 +142,7 @@ packages:
           timeout: 900000
           memory: 512
         binary: false
-        runtime: 'python:default'
+        runtime: 'python:3.11'
         web: false
         triggers:
           - name: fetch-daily-prices
