@@ -82,7 +82,7 @@ def main(args):
         'portfolio_stock_id': portfolio_stock_id,
         'price': purchase_price,
         'amount': purchase_amount,
-        'transaction_type_id': 1,
+        'transaction_type_id': 1
     }
     stock_dao.create_transaction(portfolio_stock_transaction)
 
