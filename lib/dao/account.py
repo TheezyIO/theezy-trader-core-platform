@@ -31,7 +31,8 @@ class AccountDao:
 
     def create_balance(self, user_id):
         account_balance_data = {'cash': 0, 'equity': 0, 'user_id': user_id}
-        self.mysql_client.insert('account_balance', [account_balance_data])
+        record = self.mysql_client.insert('account_balance', [account_balance_data])
+        return record[0] if record else None
 
     def create_transaction(self, transaction):
         self.mysql_client.insert('account_balance_transaction', [transaction])

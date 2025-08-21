@@ -36,13 +36,7 @@ def main(args):
             authorized_user['sub'])
 
         if not account_record:
-            return {
-                'statusCode': 404,
-                'body': {
-                    'message': 'Account Balance record not found',
-                    'status': 'failed'
-                }
-            }
+            account_record = account_dao.create_balance(authorized_user['sub'])
 
         transaction_body = {
             'amount': args['amount'],
@@ -65,7 +59,7 @@ def main(args):
         return {
             'statusCode': 400,
             'body': {
-                'message': f"Internal server error while viewing account : {str(e)}",
+                'message': f"Internal server error while depositing in account balance: {str(e)}",
                 'status': 'failed'
             }
         }
