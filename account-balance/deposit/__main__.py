@@ -36,7 +36,13 @@ def main(args):
             authorized_user['sub'])
 
         if not account_record:
-            account_record = account_dao.create_balance(authorized_user['sub'])
+            account_record_id = account_dao.create_balance(authorized_user['sub'])
+            
+            account_record = {
+                'id':account_record_id,
+                'cash': 0,
+                'equity': 0,
+            }
 
         transaction_body = {
             'amount': args['amount'],
