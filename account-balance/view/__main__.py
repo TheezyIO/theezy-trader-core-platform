@@ -24,13 +24,12 @@ def main(args):
             authorized_user['sub'])
 
         if not account_record:
-            account_dao.create_balance(authorized_user['sub'])
             return {
                 'statusCode': 200,
                 'body': {
                     'cashBalance': 0,
                     'equityBalance': 0,
-                    'timestamp': datetime.now()
+                    'timestamp': '0000-00-00 00:00:00'
                 }
             }
         else:
